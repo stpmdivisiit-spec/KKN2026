@@ -39,124 +39,48 @@
         }
 
         /* Navbar */
-        .navbar {
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .nav-btn {
-            color: var(--text-muted);
-            background: transparent;
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-        }
-        .nav-btn:hover {
-            background: #f1f5f9;
-        }
-        .nav-btn.active {
-            background: var(--primary-color);
-            color: white;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
-        }
+        .navbar { background: var(--bg-card); border-bottom: 1px solid var(--border-color); }
+        .nav-btn { color: var(--text-muted); background: transparent; border: 1px solid transparent; transition: all 0.2s ease; }
+        .nav-btn:hover { background: #f1f5f9; }
+        .nav-btn.active { background: var(--primary-color); color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); }
 
         /* Header Banner */
-        .header-banner {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            padding: 60px 0 140px;
-            color: white;
-        }
+        .header-banner { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 60px 0 140px; color: white; }
 
-        /* Main Card */
+        /* Main Card - Diperbaiki agar seragam */
+        .card-wrapper {
+            margin-top: -80px; /* Ditarik ke atas banner secara seragam pada row pembungkus */
+        }
         .main-card {
             background: var(--bg-card);
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            margin-top: -80px;
             padding: 40px;
             border: 1px solid rgba(255, 255, 255, 0.5);
+            height: 100%; /* Memastikan form memanjang rapi */
         }
 
         /* Forms */
-        .form-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-        }
-        .input-group-text, .form-control, .form-select {
-            background-color: #f8fafc;
-            border: 1px solid var(--border-color);
-            padding: 0.75rem 1rem;
-            font-size: 0.95rem;
-        }
-        .input-group-text {
-            color: var(--primary-color);
-            border-right: none;
-        }
-        .form-control, .form-select {
-            border-left: none;
-            color: var(--text-main);
-        }
-        .form-control:focus, .form-select:focus {
-            background-color: #ffffff;
-            box-shadow: none;
-            border-color: var(--primary-color);
-        }
-        .form-control:focus + .input-group-text, 
-        .form-control:focus-within {
-            border-color: var(--primary-color);
-        }
-        
-        .input-group:focus-within .input-group-text,
-        .input-group:focus-within .form-control,
-        .input-group:focus-within .form-select {
-            border-color: var(--primary-color);
-            background-color: #ffffff;
-        }
+        .form-label, .form-group label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+        .input-group-text, .form-control, .form-select, .form-control-file { background-color: #f8fafc; border: 1px solid var(--border-color); padding: 0.75rem 1rem; font-size: 0.95rem; }
+        .input-group-text { color: var(--primary-color); border-right: none; }
+        .form-control, .form-select { border-left: none; color: var(--text-main); }
+        .form-group .form-control { border-left: 1px solid var(--border-color); border-radius: 8px; }
+        .form-control:focus, .form-select:focus { background-color: #ffffff; box-shadow: none; border-color: var(--primary-color); }
+        .form-control:focus + .input-group-text, .form-control:focus-within { border-color: var(--primary-color); }
+        .input-group:focus-within .input-group-text, .input-group:focus-within .form-control, .input-group:focus-within .form-select { border-color: var(--primary-color); background-color: #ffffff; }
 
         /* Upload Area */
-        .upload-area {
-            border: 2px dashed #cbd5e1;
-            border-radius: 12px;
-            background: #f8fafc;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .upload-area:hover {
-            border-color: var(--primary-color);
-            background: #eff6ff;
-        }
+        .upload-area { border: 2px dashed #cbd5e1; border-radius: 12px; background: #f8fafc; transition: all 0.3s ease; cursor: pointer; }
+        .upload-area:hover { border-color: var(--primary-color); background: #eff6ff; }
 
         /* Buttons */
-        .btn-primary {
-            background: var(--primary-color);
-            border: none;
-            padding: 12px 24px;
-            font-weight: 600;
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-        .btn-primary:hover {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
-        }
+        .btn-primary { background: var(--primary-color); border: none; padding: 12px 24px; font-weight: 600; border-radius: 10px; transition: all 0.3s; }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3); }
 
         /* Table & Badges */
-        .table-custom th {
-            background: #f1f5f9;
-            color: var(--text-muted);
-            font-weight: 600;
-            border-bottom: 2px solid var(--border-color);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-        }
-        .table-custom td {
-            vertical-align: middle;
-            color: var(--text-main);
-            border-bottom: 1px solid var(--border-color);
-        }
+        .table-custom th { background: #f1f5f9; color: var(--text-muted); font-weight: 600; border-bottom: 2px solid var(--border-color); font-size: 0.85rem; text-transform: uppercase; }
+        .table-custom td { vertical-align: middle; color: var(--text-main); border-bottom: 1px solid var(--border-color); }
         .badge-gentaskin { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
         .badge-tematik { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
         .badge-regular { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
@@ -197,16 +121,32 @@
 
     <div class="container mb-5">
         
-        <!-- BAGIAN 1: FORM UPLOAD -->
+        <!-- BAGIAN 1: FORM UPLOAD MENGGABUNGKAN FOTO & LAPORAN -->
         <div id="section-upload">
-            <div class="row justify-content-center">
-                <div class="col-lg-9">
+            <!-- Penambahan align-items-stretch agar kedua form sejajar dan memiliki tinggi rata -->
+            <div class="row justify-content-center align-items-stretch card-wrapper g-4">
+                
+
+
+
+
+
+
+
+
+
+<!-- BAGIAN 1: FORM UPLOAD MENGGABUNGKAN FOTO & LAPORAN -->
+        <div id="section-upload">
+            <div class="row justify-content-center align-items-stretch card-wrapper g-4">
+                
+                <!-- KOLOM KIRI: FORM FOTO -->
+                <div class="col-lg-6">
                     <div class="main-card">
                         <div class="text-center mb-5">
                             <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 64px; height: 64px; background: #eff6ff; color: #3b82f6;">
                                 <i class="fas fa-folder-open fa-2x"></i>
                             </div>
-                            <h4 class="fw-bold text-dark">Formulir Pengumpulan Foto</h4>
+                            <h4 class="fw-bold text-dark">Formulir Pengumpulan Foto Kegiatan</h4>
                         </div>
                         
                         <form id="uploadForm">
@@ -215,14 +155,14 @@
                                     <label class="form-label">Nama Lengkap</label>
                                     <div class="input-group rounded-3 overflow-hidden">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                        <input type="text" class="form-control" id="namaLengkap" placeholder="Contoh: Budi Santoso" required>
+                                        <input type="text" class="form-control" id="namaLengkap" placeholder="Budi Santoso" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Desa KKN</label>
                                     <div class="input-group rounded-3 overflow-hidden">
                                         <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                                        <input type="text" class="form-control" id="desaKkn" placeholder="Contoh: Desa Suka Maju" required>
+                                        <input type="text" class="form-control" id="desaKkn" placeholder="Desa Suka Maju" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -230,7 +170,7 @@
                                     <div class="input-group rounded-3 overflow-hidden">
                                         <span class="input-group-text"><i class="fas fa-tags"></i></span>
                                         <select class="form-select" id="jenisKkn" required>
-                                            <option value="" disabled selected>Pilih Jenis KKN...</option>
+                                            <option value="" disabled selected>Pilih KKN...</option>
                                             <option value="KKN GENTASKIN">KKN GENTASKIN</option>
                                             <option value="KKN Regular Tematik">KKN Regular Tematik</option>
                                             <option value="KKN Regular">KKN Regular</option>
@@ -241,15 +181,13 @@
                                     <label class="form-label">Nama Kegiatan</label>
                                     <div class="input-group rounded-3 overflow-hidden">
                                         <span class="input-group-text"><i class="fas fa-clipboard-check"></i></span>
-                                        <input type="text" class="form-control" id="namaKegiatan" placeholder="Contoh: Sosialisasi UMKM" required>
+                                        <input type="text" class="form-control" id="namaKegiatan" placeholder="Sosialisasi UMKM" required>
                                     </div>
                                 </div>
                                 
                                 <div class="col-12">
                                     <label class="form-label">Deskripsi Singkat</label>
-                                    <div id="editor">
-                                        <p><br></p>
-                                    </div>
+                                    <div id="editor"><p><br></p></div>
                                 </div>
 
                                 <div class="col-12">
@@ -257,60 +195,206 @@
                                     <div class="upload-area p-5 text-center position-relative">
                                         <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
                                         <input class="form-control stretched-link opacity-0 position-absolute top-0 start-0 w-100 h-100" type="file" id="foto" accept="image/png, image/jpeg" multiple required style="cursor: pointer;">
-                                        <div class="fw-bold text-dark fs-5" id="fileInfoText">Klik atau Seret Foto ke Sini</div>
-                                        <div class="small text-muted mt-2">Format JPG/PNG. <b>Bisa pilih lebih dari 1 (Maksimal 5 Foto)</b>.</div>
+                                        <div class="fw-bold text-dark fs-5" id="fileInfoText">Klik / Seret Foto</div>
+                                        <div class="small text-muted mt-2">Maksimal 5 Foto (JPG/PNG).</div>
                                     </div>
                                 </div>
                                 
-                                <!-- PROGRESS BAR CONTAINER (Hidden by Default) -->
+                                <!-- PROGRESS BAR FOTO -->
                                 <div class="col-12" id="progressContainer" style="display: none;">
                                     <div class="progress shadow-sm" style="height: 25px; border-radius: 12px; background-color: #e2e8f0;">
                                         <div id="uploadProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-primary fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                                     </div>
-                                    <div class="text-center mt-2 small fw-medium text-primary" id="progressText">Memulai proses unggah...</div>
+                                    <div class="text-center mt-2 small fw-medium text-primary" id="progressText">Memproses...</div>
                                 </div>
                                 
                                 <div class="col-12 pt-2 d-flex flex-column flex-md-row gap-3">
-                                    <button type="button" id="installPwaBtn" class="btn btn-outline-primary fw-bold px-4 py-3" style="display: none; border-radius: 10px;">
-                                        <i class="fas fa-download me-2"></i> Install App
-                                    </button>
-                                    <button type="submit" id="submitBtn" class="btn btn-primary w-100 py-3 shadow-sm">
-                                        <i class="fas fa-paper-plane me-2"></i> <span id="btnText">Unggah Dokumentasi</span>
+                                    <button type="submit" id="btnSubmitFoto" class="btn btn-primary w-100 py-3 shadow-sm">
+                                        <i class="fas fa-paper-plane me-2"></i> Unggah Dokumentasi
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+
+                <!-- KOLOM KANAN: FORM LAPORAN -->
+                <div class="col-lg-6">
+                    <div class="main-card">
+                        <div class="text-center mb-5">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 64px; height: 64px; background: #fef2f2; color: #dc2626;">
+                                <i class="fas fa-file-pdf fa-2x"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark">Formulir Pengumpulan Laporan KKN</h4>
+                        </div>
+                        
+                        <form id="laporanForm">
+                            <!-- INFORMASI UPLOAD -->
+                            <div class="card mb-4 shadow-sm border-0">
+                                <div class="card-header bg-light border-bottom-0 py-3">
+                                    <h5 class="mb-0 fw-bold text-dark fs-6">Informasi Pengiriman</h5>
+                                </div>
+                                <div class="card-body bg-white rounded-bottom">
+                                    <div class="form-group mb-4">
+                                        <label for="tanggal_upload">Tanggal Upload</label>
+                                        <input type="text" class="form-control bg-light" id="tanggal_upload" name="tanggal_upload" readonly>
+                                        <small class="form-text text-muted mt-2">Batas akhir: <strong>10 September 2026</strong>.</small>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label for="nama_pengirim">Nama Pengirim <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="nama_pengirim" name="nama_pengirim" placeholder="Nama Lengkap" required>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="dosen_pendamping">Dosen Pendamping <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="dosen_pendamping" name="dosen_pendamping" placeholder="Dr. Nama, M.Si." required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- INFORMASI KKN -->
+                            <div class="card mb-4 shadow-sm border-0">
+                                <div class="card-header bg-light border-bottom-0 py-3">
+                                    <h5 class="mb-0 fw-bold text-dark fs-6">Informasi KKN</h5>
+                                </div>
+                                <div class="card-body bg-white rounded-bottom">
+                                    <div class="form-group mb-4">
+                                        <label for="formLaporanJenisKkn">Jenis KKN <span class="text-danger">*</span></label>
+                                        <select class="form-control form-select" id="formLaporanJenisKkn" name="jenis_kkn" required>
+                                            <option value="">-- Pilih Jenis KKN --</option>
+                                            <option value="KKN GENTASKIN">KKN GENTASKIN</option>
+                                            <option value="KKN Regular">KKN Reguler</option>
+                                            <option value="KKN Regular Tematik">KKN Reguler Tematik</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="lokasi_kkn">Lokasi KKN <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="lokasi_kkn" name="lokasi_kkn" rows="2" placeholder="Desa ..., Kec ..., Kab ..." required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- DOKUMEN LAPORAN -->
+                            <div class="card mb-4 shadow-sm border-0">
+                                <div class="card-header bg-light border-bottom-0 py-3">
+                                    <h5 class="mb-0 fw-bold text-dark fs-6">Upload Dokumen KKN</h5>
+                                </div>
+                                <div class="card-body bg-white rounded-bottom">
+                                    <div class="form-group mb-4">
+                                        <label for="laporan_kegiatan">Laporan Kegiatan (PDF) <span class="text-danger">*</span></label>
+                                        <input type="file" class="form-control" id="laporan_kegiatan" name="laporan_kegiatan" accept=".pdf,application/pdf" required>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label for="jurnal_kkn">Jurnal KKN (Khusus Untuk KKN Reguler dan KKN Reguler Tematik)</label>
+                                        <input type="file" class="form-control" id="jurnal_kkn" name="jurnal_kkn" accept=".pdf,application/pdf">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="laporan_keuangan">Laporan Keuangan (Excel) <span class="badge bg-warning text-dark ms-1"><i class="fas fa-lock me-1"></i> Privat</span></label>
+                                        <input type="file" class="form-control" id="laporan_keuangan" name="laporan_keuangan" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PERNYATAAN -->
+                            <div class="form-group mb-4 px-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="persetujuan" name="persetujuan" required>
+                                    <label class="form-check-label text-dark fw-medium ms-2" for="persetujuan">
+                                        Data dan dokumen yang diunggah adalah benar.
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- PROGRESS BAR LAPORAN -->
+                            <div class="form-group mb-3" id="progressContainerLaporan" style="display: none;">
+                                <div class="progress shadow-sm" style="height: 25px; border-radius: 12px; background-color: #e2e8f0;">
+                                    <div id="uploadProgressBarLaporan" class="progress-bar progress-bar-striped progress-bar-animated bg-danger fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                                <div class="text-center mt-2 small fw-medium text-danger" id="progressTextLaporan">Menyiapkan file laporan...</div>
+                            </div>
+
+                            <div class="form-group d-flex gap-3">
+                                <button type="submit" id="btnSubmitLaporan" class="btn btn-danger py-3 w-100 shadow-sm" style="border-radius: 10px; font-weight: 600;">
+                                    <i class="fas fa-upload me-2"></i> Kirim Laporan
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <!-- BAGIAN 2: DATA DOKUMENTASI -->
+        <!-- ================= MODAL KONFIRMASI ================= -->
+        
+        <!-- Modal Konfirmasi Foto -->
+        <div class="modal fade" id="modalConfirmFoto" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content rounded-4 border-0 shadow">
+                    <div class="modal-body p-4 text-center">
+                        <i class="fas fa-question-circle fa-4x text-primary mb-3"></i>
+                        <h5 class="fw-bold mb-3">Unggah Dokumentasi?</h5>
+                        <p class="text-muted mb-4">Apakah Anda yakin data dan foto kegiatan yang akan diunggah sudah benar? Pastikan tidak ada kesalahan sebelum melanjutkan.</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <button type="button" class="btn btn-light px-4 py-2 fw-medium" data-bs-dismiss="modal">Tidak, Cek Lagi</button>
+                            <button type="button" class="btn btn-primary px-4 py-2 fw-medium" id="btnProsesFoto">Iya, Unggah Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Konfirmasi Laporan -->
+        <div class="modal fade" id="modalConfirmLaporan" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content rounded-4 border-0 shadow">
+                    <div class="modal-body p-4 text-center">
+                        <i class="fas fa-file-signature fa-4x text-danger mb-3"></i>
+                        <h5 class="fw-bold mb-3">Kirim Laporan KKN?</h5>
+                        <p class="text-muted mb-4">Pastikan dokumen PDF/Excel yang Anda pilih sudah final. Data yang dikirim akan tersimpan di sistem pusat.</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <button type="button" class="btn btn-light px-4 py-2 fw-medium" data-bs-dismiss="modal">Tidak, Batal</button>
+                            <button type="button" class="btn btn-danger px-4 py-2 fw-medium" id="btnProsesLaporan">Iya, Kirim Laporan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+        <!-- BAGIAN 2: DATA DOKUMENTASI & LAPORAN -->
         <div id="section-data" style="display: none;">
-            <div class="row justify-content-center">
-                <div class="col-lg-11">
+            <div class="row justify-content-center card-wrapper">
+                
+                <!-- TABEL 1: FOTO -->
+                <div class="col-lg-12 mb-5">
                     <div class="main-card">
                         <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
-                            <h4 class="fw-bold m-0 text-dark"><i class="fas fa-database text-primary me-2"></i>Database Dokumentasi</h4>
-                            <button class="btn btn-light rounded-circle shadow-sm border" onclick="loadDataKkn()" title="Refresh Data" style="width: 45px; height: 45px;">
+                            <h4 class="fw-bold m-0 text-dark"><i class="fas fa-images text-primary me-2"></i>Database Dokumentasi Foto</h4>
+                            <button class="btn btn-light rounded-circle shadow-sm border" onclick="loadDataKkn()" title="Refresh Data">
                                 <i class="fas fa-sync-alt text-primary"></i>
                             </button>
                         </div>
-
-                        <div class="row mb-4 p-3 rounded-3 align-items-end" style="background: #f8fafc; border: 1px solid #e2e8f0;">
-                            <div class="col-md-5">
-                                <label class="form-label">Dari Tanggal</label>
-                                <input type="date" id="minDate" class="form-control bg-white">
-                            </div>
-                            <div class="col-md-5">
-                                <label class="form-label">Sampai Tanggal</label>
-                                <input type="date" id="maxDate" class="form-control bg-white">
-                            </div>
-                            <div class="col-md-2 mt-3 mt-md-0">
-                                <button class="btn btn-secondary w-100 fw-medium py-2" onclick="resetFilter()" style="border-radius: 8px;">Reset Filter</button>
-                            </div>
-                        </div>
-
+                        
                         <div class="table-responsive">
                             <table id="tabelKkn" class="table table-hover table-custom w-100 align-middle">
                                 <thead>
@@ -329,7 +413,7 @@
                                     <tr>
                                         <td colspan="8" class="text-center py-5 text-muted">
                                             <div class="spinner-border text-primary me-2" role="status" style="width: 1.5rem; height: 1.5rem;"></div> 
-                                            Menarik data dari server...
+                                            Menarik data foto dari server...
                                         </td>
                                     </tr>
                                 </tbody>
@@ -337,11 +421,50 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- TABEL 2: LAPORAN -->
+                <div class="col-lg-12">
+                    <div class="main-card border-top border-danger border-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+                            <h4 class="fw-bold m-0 text-dark"><i class="fas fa-file-alt text-danger me-2"></i>Database Laporan Resmi</h4>
+                            <button class="btn btn-light rounded-circle shadow-sm border" onclick="loadDataLaporan()" title="Refresh Data Laporan">
+                                <i class="fas fa-sync-alt text-danger"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table id="tabelDataLaporan" class="table table-hover table-custom w-100 align-middle">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th>Waktu Upload</th>
+                                        <th>Pengirim</th>
+                                        <th>Dosen Pendamping</th>
+                                        <th>Jenis KKN</th>
+                                        <th>Lokasi</th>
+                                        <th class="text-center">File Lap.</th>
+                                        <th class="text-center">File Jur.</th>
+                                        <th class="text-center">File Keu.</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelBodyLaporan">
+                                    <tr>
+                                        <td colspan="9" class="text-center py-5 text-muted">
+                                            <div class="spinner-border text-danger me-2" role="status" style="width: 1.5rem; height: 1.5rem;"></div> 
+                                            Menarik data laporan dari server...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- MODAL POPUP DETAIL -->
+    <!-- MODAL POPUP DETAIL FOTO -->
     <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
@@ -350,11 +473,7 @@
             <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body p-4">
-              
-              <!-- Carousel -->
               <div id="modalFotoContainer" class="mb-4 text-center"></div>
-              
-              <!-- Informasi Meta -->
               <div class="p-4 rounded-3 mb-4" style="background: #f8fafc; border: 1px solid #e2e8f0;">
                   <div class="row g-4">
                       <div class="col-6 col-md-3">
@@ -375,15 +494,37 @@
                       </div>
                   </div>
               </div>
-              
-              <!-- Deskripsi -->
               <h6 class="fw-bold mb-3 text-dark">Deskripsi Catatan:</h6>
               <div id="modalDeskripsi" class="p-3 border rounded-3 bg-white text-muted" style="min-height: 80px;"></div>
-              
           </div>
         </div>
       </div>
     </div>
+
+    <!-- MODAL INPUT PASSWORD DOKUMEN -->
+    <div class="modal fade" id="modalPasswordFile" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header border-bottom-0 pb-0 pt-4 px-4">
+                    <h5 class="modal-title fw-bold text-dark"><i class="fas fa-lock text-warning me-2"></i>Akses Terkunci</h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 text-center">
+                    <p class="text-muted small mb-4">Masukkan kata sandi untuk mengunduh/melihat dokumen ini.</p>
+                    <div class="form-group mb-3 text-start">
+                        <input type="password" id="inputPasswordAkses" class="form-control text-center" placeholder="Masukkan Kata Sandi">
+                        <div id="passwordError" class="text-danger small mt-2 text-center fw-medium" style="display:none;">
+                            <i class="fas fa-exclamation-circle"></i> Kata sandi salah!
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100 py-2 fw-medium rounded-3" id="btnSubmitPassword">
+                        Buka Dokumen
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Toast Container -->
     <div class="toast-container position-fixed bottom-0 end-0 p-4">
@@ -402,21 +543,38 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
-    <script>
+  
+  
+
+
+
+
+
+
+
+
+<script>
         // URL WEB APP GOOGLE APPS SCRIPT
         const scriptURL = 'https://script.google.com/macros/s/AKfycbx4k8rdYHta81IFvDAzpOspVwInnCdt0TeBgKOPKYjZWhFllmUswxMWRFwUyLNS79rDBg/exec'; 
 
-        // Inisialisasi Quill
+        // Set Waktu Realtime
+        function updateTanggalUpload() {
+            const now = new Date();
+            const dateString = now.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
+            const timeString = now.toLocaleTimeString('id-ID');
+            document.getElementById('tanggal_upload').value = `${dateString} ${timeString}`;
+        }
+        updateTanggalUpload();
+
+        // Init Editor Quill
         var quill = new Quill('#editor', {
             theme: 'snow',
-            placeholder: 'Tuliskan deskripsi atau catatan singkat kegiatan di sini...',
-            modules: {
-                toolbar: [ ['bold', 'italic', 'underline'], [{'list': 'ordered'}, {'list': 'bullet'}], ['clean'] ]
-            }
+            placeholder: 'Tuliskan deskripsi...',
+            modules: { toolbar: [ ['bold', 'italic', 'underline'], [{'list': 'ordered'}, {'list': 'bullet'}], ['clean'] ] }
         });
 
         let kknDataList = [];
-        let dataTable;
+        let dataTable, dataTableLaporan;
 
         function showToast(message, type) {
             const toastEl = document.getElementById('liveToast');
@@ -426,54 +584,87 @@
             toast.show();
         }
 
-        // Animasi Teks Input File
+        // Handle File Input UI Foto
         document.getElementById('foto').addEventListener('change', function(e) {
             const fileCount = e.target.files.length;
             const infoText = document.getElementById('fileInfoText');
             if (fileCount > 0) {
                 if(fileCount > 5) {
-                    infoText.innerHTML = `<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Terlalu banyak file! (Maks 5)</span>`;
+                    infoText.innerHTML = `<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Maks 5 Foto!</span>`;
                     showToast('Maksimal hanya boleh 5 foto!', 'danger');
                 } else {
-                    infoText.innerHTML = `<span class="text-success"><i class="fas fa-check-circle"></i> ${fileCount} foto berhasil dipilih!</span>`;
+                    infoText.innerHTML = `<span class="text-success"><i class="fas fa-check-circle"></i> ${fileCount} foto terpilih!</span>`;
                 }
-            } else {
-                infoText.innerHTML = "Klik atau Seret Foto ke Sini";
-            }
+            } else { infoText.innerHTML = "Klik / Seret Foto"; }
         });
 
-        // Submit Form dengan XMLHttpRequest (Untuk Progress Bar)
+        // ---------------- TAB LOGIC ----------------
+        function switchTab(tabName) {
+            const btnUpload = document.getElementById('btnTabUpload');
+            const btnData = document.getElementById('btnTabData');
+            if (tabName === 'upload') {
+                document.getElementById('section-upload').style.display = 'block';
+                document.getElementById('section-data').style.display = 'none';
+                btnUpload.classList.add('active'); btnData.classList.remove('active');
+                document.getElementById('headerTitle').textContent = 'Sistem Upload Dokumentasi';
+            } else {
+                document.getElementById('section-upload').style.display = 'none';
+                document.getElementById('section-data').style.display = 'block';
+                btnData.classList.add('active'); btnUpload.classList.remove('active');
+                document.getElementById('headerTitle').textContent = 'Database KKN';
+                loadDataKkn(); // Load Tabel Foto
+                loadDataLaporan(); // Load Tabel Laporan
+            }
+        }
 
 
-
-// Submit Form dengan Fetch + Simulated Smooth Progress Bar
-        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+        // ==========================================
+        // SUBMIT FORM 1: DOKUMENTASI FOTO (MODAL & PROGRESS)
+        // ==========================================
+        let fotoModalInstance;
+        
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const fileInput = document.getElementById('foto');
-            const files = fileInput.files;
-
+            const files = document.getElementById('foto').files;
             if (files.length === 0) { showToast('Pilih minimal 1 foto dokumentasi!', 'warning'); return; }
             if (files.length > 5) { showToast('Maksimal 5 foto!', 'danger'); return; }
 
-            const submitBtn = document.getElementById('submitBtn');
-            const btnText = document.getElementById('btnText');
+            fotoModalInstance = new bootstrap.Modal(document.getElementById('modalConfirmFoto'));
+            fotoModalInstance.show();
+        });
+
+        document.getElementById('btnProsesFoto').addEventListener('click', async function() {
+            fotoModalInstance.hide(); 
+            
+            const files = document.getElementById('foto').files;
+            const submitBtn = document.getElementById('btnSubmitFoto');
             const progressContainer = document.getElementById('progressContainer');
             const progressBar = document.getElementById('uploadProgressBar');
             const progressText = document.getElementById('progressText');
 
             submitBtn.disabled = true;
-            btnText.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Memproses Data...';
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Memproses...';
             
-            // Aktifkan visual progress bar sejak awal pemrosesan file
             progressContainer.style.display = 'block';
-            progressBar.style.width = '5%';
-            progressBar.textContent = '5%';
-            progressText.textContent = 'Mengonversi file foto ke sistem...';
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+            progressText.textContent = 'Menyiapkan foto...';
 
+            let currentProgress = 0;
             let progressInterval;
 
             try {
-                // Konversi semua file ke Base64
+                progressInterval = setInterval(() => {
+                    if (currentProgress < 90) {
+                        currentProgress += Math.floor(Math.random() * 5) + 2; 
+                        if (currentProgress > 90) currentProgress = 90;
+                        progressBar.style.width = currentProgress + '%';
+                        progressBar.textContent = currentProgress + '%';
+                        if (currentProgress >= 40) progressText.textContent = 'Mengonversi foto ke sistem...';
+                        if (currentProgress >= 70) progressText.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Mengirim ke server Google...';
+                    }
+                }, 200);
+
                 const fileArray = [];
                 for(let i = 0; i < files.length; i++) {
                     const base64Data = await new Promise((resolve, reject) => {
@@ -486,6 +677,7 @@
                 }
 
                 const payload = {
+                    formType: 'dokumentasi',
                     nama: document.getElementById('namaLengkap').value,
                     desa: document.getElementById('desaKkn').value,
                     jenis: document.getElementById('jenisKkn').value,
@@ -494,171 +686,299 @@
                     files: fileArray
                 };
 
-                // Memulai simulasi progress bar yang berjalan halus hingga 95%
-                let currentProgress = 10;
-                progressText.innerHTML = '<i class="fas fa-cloud-upload-alt fa-bounce me-1"></i> Mengunggah file ke server...';
-                
-                progressInterval = setInterval(() => {
-                    if (currentProgress < 95) {
-                        currentProgress += Math.floor(Math.random() * 5) + 1; // Naik acak 1-5%
-                        if (currentProgress > 95) currentProgress = 95;
-                        progressBar.style.width = currentProgress + '%';
-                        progressBar.textContent = currentProgress + '%';
-                        
-                        if (currentProgress >= 80) {
-                            progressText.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Menyimpan ke Google Drive & Spreadsheet...';
-                        }
-                    }
-                }, 150); // Bergerak setiap 150 milidetik
-
-                // Eksekusi pengiriman menggunakan Fetch API yang jauh lebih stabil menampung data besar
                 const response = await fetch(scriptURL, {
                     method: 'POST',
-                    mode: 'cors', // Pastikan CORS aktif eksplisit
-                    headers: {
-                        'Content-Type': 'text/plain;charset=utf-8',
-                    },
+                    mode: 'cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify(payload)
                 });
 
-                clearInterval(progressInterval); // Hentikan timer simulasi
+                clearInterval(progressInterval);
 
-                if (!response.ok) {
-                    throw new Error('Respon server tidak sukses.');
-                }
-
+                if (!response.ok) throw new Error('Respon server tidak sukses.');
                 const result = await response.json();
                 
                 if(result.status === 'success') {
-                    // Paksa progress bar ke 100% saat data sukses kembali
                     progressBar.style.width = '100%';
                     progressBar.textContent = '100%';
                     progressText.innerHTML = '<i class="fas fa-check-circle text-success me-1"></i> Selesai diunggah!';
+                    showToast('Mantap! Dokumentasi foto berhasil diunggah.', 'success');
                     
-                    showToast('Mantap! Semua dokumentasi berhasil diunggah.', 'success');
                     document.getElementById('uploadForm').reset();
                     quill.setContents([]);
-                    document.getElementById('fileInfoText').innerHTML = "Klik atau Seret Foto ke Sini";
+                    document.getElementById('fileInfoText').innerHTML = "Klik / Seret Foto";
                 } else {
                     showToast('Gagal memproses file: ' + result.message, 'danger');
                     progressText.textContent = 'Gagal memproses pengunggahan.';
                 }
             } catch (error) {
                 clearInterval(progressInterval);
-                showToast('Gagal mengunggah file. Pastikan total resolusi/ukuran foto tidak terlalu raksasa.', 'danger');
-                progressText.textContent = 'Terjadi kesalahan jaringan atau batasan ukuran file.';
+                showToast('Gagal mengunggah foto. Pastikan koneksi stabil.', 'danger');
+                progressText.textContent = 'Terjadi kesalahan jaringan.';
                 console.error(error);
             } finally {
                 submitBtn.disabled = false;
-                btnText.textContent = 'Unggah Dokumentasi';
-                setTimeout(() => {
-                    progressContainer.style.display = 'none';
-                    progressBar.style.width = '0%';
-                }, 3500); // Sembunyikan setelah 3.5 detik agar user sempat melihat angka 100%
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i> Unggah Dokumentasi';
+                setTimeout(() => { progressContainer.style.display = 'none'; progressBar.style.width = '0%'; }, 3500); 
             }
         });
 
 
+        // ==========================================
+        // SUBMIT FORM 2: DOKUMEN LAPORAN RESMI (MODAL & PROGRESS)
+        // ==========================================
+        let laporanModalInstance;
 
+        document.getElementById('laporanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const lapFile = document.getElementById('laporan_kegiatan').files[0];
+            if (!lapFile) { showToast('Dokumen Laporan Kegiatan wajib diupload!', 'warning'); return; }
 
+            laporanModalInstance = new bootstrap.Modal(document.getElementById('modalConfirmLaporan'));
+            laporanModalInstance.show();
+        });
 
+        document.getElementById('btnProsesLaporan').addEventListener('click', async function() {
+            laporanModalInstance.hide(); 
 
+            const lapFile = document.getElementById('laporan_kegiatan').files[0];
+            const jurFile = document.getElementById('jurnal_kkn').files[0];
+            const keuFile = document.getElementById('laporan_keuangan').files[0];
 
-        // Switch Tab & Update Title
-        function switchTab(tabName) {
-            const btnUpload = document.getElementById('btnTabUpload');
-            const btnData = document.getElementById('btnTabData');
+            const submitBtnLap = document.getElementById('btnSubmitLaporan');
+            const progressContainer = document.getElementById('progressContainerLaporan');
+            const progressBar = document.getElementById('uploadProgressBarLaporan');
+            const progressText = document.getElementById('progressTextLaporan');
+
+            submitBtnLap.disabled = true;
+            submitBtnLap.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Mengirim...';
             
-            if (tabName === 'upload') {
-                document.getElementById('section-upload').style.display = 'block';
-                document.getElementById('section-data').style.display = 'none';
-                btnUpload.classList.add('active');
-                btnData.classList.remove('active');
-                document.getElementById('headerTitle').textContent = 'Sistem Upload Dokumentasi';
-            } else {
-                document.getElementById('section-upload').style.display = 'none';
-                document.getElementById('section-data').style.display = 'block';
-                btnData.classList.add('active');
-                btnUpload.classList.remove('active');
-                document.getElementById('headerTitle').textContent = 'Database Dokumentasi';
-                loadDataKkn();
-            }
-        }
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+            progressText.textContent = 'Menyiapkan file laporan...';
+            
+            updateTanggalUpload();
 
-        // Ambil Data
+            let currentProgress = 0;
+            let progressInterval;
+
+            try {
+                progressInterval = setInterval(() => {
+                    if (currentProgress < 90) {
+                        currentProgress += Math.floor(Math.random() * 4) + 1; 
+                        if (currentProgress > 90) currentProgress = 90;
+                        progressBar.style.width = currentProgress + '%';
+                        progressBar.textContent = currentProgress + '%';
+                        if (currentProgress >= 30) progressText.textContent = 'Mengenkripsi dokumen PDF/Excel...';
+                        if (currentProgress >= 65) progressText.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Menyimpan ke Google Drive...';
+                    }
+                }, 250);
+
+                const getBase64 = (file) => new Promise((resolve, reject) => {
+                    if (!file) return resolve(null);
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve({
+                        filename: file.name,
+                        mimeType: file.type,
+                        fileData: reader.result.split(',')[1]
+                    });
+                    reader.onerror = error => reject(error);
+                });
+
+                const payloadLaporan = {
+                    formType: 'laporan',
+                    tanggal_upload: document.getElementById('tanggal_upload').value,
+                    nama_pengirim: document.getElementById('nama_pengirim').value,
+                    dosen_pendamping: document.getElementById('dosen_pendamping').value,
+                    jenis_kkn: document.getElementById('formLaporanJenisKkn').value,
+                    lokasi_kkn: document.getElementById('lokasi_kkn').value,
+                    laporan_kegiatan: await getBase64(lapFile),
+                    jurnal_kkn: await getBase64(jurFile),
+                    laporan_keuangan: await getBase64(keuFile)
+                };
+
+                const responseLap = await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payloadLaporan)
+                });
+
+                clearInterval(progressInterval);
+
+                const resultLap = await responseLap.json();
+                
+                if (resultLap.status === 'success') {
+                    progressBar.style.width = '100%';
+                    progressBar.textContent = '100%';
+                    progressText.innerHTML = '<i class="fas fa-check-circle text-success me-1"></i> Dokumen berhasil terkirim!';
+                    showToast('Sukses! Semua dokumen laporan telah dikirim.', 'success');
+                    
+                    document.getElementById('laporanForm').reset();
+                    updateTanggalUpload(); 
+                } else {
+                    showToast('Gagal mengirim laporan: ' + resultLap.message, 'danger');
+                    progressText.textContent = 'Gagal memproses pengiriman.';
+                }
+
+            } catch (error) {
+                clearInterval(progressInterval);
+                showToast('Terjadi kesalahan jaringan atau ukuran file terlalu besar.', 'danger');
+                progressText.textContent = 'Gagal terhubung ke server.';
+                console.error(error);
+            } finally {
+                submitBtnLap.disabled = false;
+                submitBtnLap.innerHTML = '<i class="fas fa-upload me-2"></i> Kirim Laporan';
+                setTimeout(() => { progressContainer.style.display = 'none'; progressBar.style.width = '0%'; }, 3500);
+            }
+        });
+
+
+        // ---------------- TABEL 1: FOTO ----------------
         function loadDataKkn() {
             document.getElementById('tabelBody').innerHTML = `<tr><td colspan="8" class="text-center py-5 text-muted"><div class="spinner-border text-primary me-2"></div> Menarik data dari server...</td></tr>`;
             if ($.fn.DataTable.isDataTable('#tabelKkn')) { $('#tabelKkn').DataTable().destroy(); }
-
-            fetch(scriptURL, { redirect: 'follow' })
+            
+            fetch(scriptURL + "?type=foto", { redirect: 'follow' })
                 .then(res => res.json())
                 .then(jsonData => {
                     const tbody = document.getElementById('tabelBody');
                     tbody.innerHTML = ''; kknDataList = [];
-                    
-                    if(jsonData.length === 0) {
+                    if(jsonData.length === 0 || jsonData.error) {
                          tbody.innerHTML = '<tr><td colspan="8" class="text-center py-5">Belum ada data dokumentasi.</td></tr>'; return;
                     }
-
                     jsonData.forEach((row, index) => {
                         kknDataList.push(row);
                         const badgeClass = row.jenis === 'KKN GENTASKIN' ? 'badge-gentaskin' : row.jenis === 'KKN Regular Tematik' ? 'badge-tematik' : 'badge-regular';
                         let textDesc = document.createElement("div"); textDesc.innerHTML = row.deskripsi;
                         textDesc = textDesc.textContent || textDesc.innerText || "";
                         if(textDesc.length > 25) textDesc = textDesc.substring(0, 25) + '...';
-
                         tbody.innerHTML += `
                             <tr>
                                 <td class="text-center fw-medium">${index + 1}</td>
-                                <td><span class="badge bg-light text-dark border p-2"><i class="far fa-calendar-alt me-1 text-muted"></i>${row.tanggal}</span></td>
+                                <td><span class="badge bg-light text-dark border p-2">${row.tanggal}</span></td>
                                 <td class="fw-semibold">${row.nama}</td>
-                                <td><i class="fas fa-map-marker-alt text-danger me-1"></i>${row.desa}</td>
+                                <td>${row.desa}</td>
                                 <td><span class="custom-badge ${badgeClass}">${row.jenis}</span></td>
                                 <td>${row.kegiatan}</td>
                                 <td class="text-muted small">${textDesc}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm btn-info text-white rounded-pill px-3 shadow-sm" onclick="showDetailModal(${index})">
-                                        <i class="fas fa-images me-1"></i> Lihat Foto
-                                    </button>
+                                    <button class="btn btn-sm btn-info text-white rounded-pill px-3 shadow-sm" onclick="showDetailModal(${index})"><i class="fas fa-images"></i></button>
                                 </td>
                             </tr>
                         `;
                     });
-                    dataTable = $('#tabelKkn').DataTable({ "language": { "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/id.json" }, "ordering": false, "pageLength": 10 });
+                    dataTable = $('#tabelKkn').DataTable({ "language": { "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/id.json" }, "ordering": false, "pageLength": 5 });
                 }).catch(() => {
-                    document.getElementById('tabelBody').innerHTML = '<tr><td colspan="8" class="text-center text-danger py-5"><i class="fas fa-exclamation-circle me-1"></i> Gagal memuat data.</td></tr>';
+                    document.getElementById('tabelBody').innerHTML = '<tr><td colspan="8" class="text-center text-danger py-5"><i class="fas fa-exclamation-circle me-1"></i> Data foto gagal dimuat.</td></tr>';
                 });
         }
 
-        // Filter Tanggal
-        $.fn.dataTable.ext.search.push(function(settings, data) {
-            let min = $('#minDate').val(); let max = $('#maxDate').val();
-            let date = new Date(data[1].replace(/<[^>]+>/g, '').trim());
-            if (!min && !max) return true;
-            let minDate = min ? new Date(min) : null; let maxDate = max ? new Date(max) : null;
-            if (minDate && !maxDate) return date >= minDate;
-            if (!minDate && maxDate) return date <= maxDate;
-            return date >= minDate && date <= maxDate;
+
+        // ==========================================
+        // SISTEM PASSWORD & LOAD DATA LAPORAN (BARU)
+        // ==========================================
+        let passwordModalInstance;
+        let targetSecureUrl = '';
+        let targetSecureType = '';
+
+        // Fungsi Membuka Modal Password sebelum File dibuka
+        window.openSecureFile = function(url, type) {
+            targetSecureUrl = url;
+            targetSecureType = type;
+            
+            // Reset input modal
+            document.getElementById('inputPasswordAkses').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+            
+            if(!passwordModalInstance) {
+                passwordModalInstance = new bootstrap.Modal(document.getElementById('modalPasswordFile'));
+            }
+            passwordModalInstance.show();
+        };
+
+        // Event Listener untuk Tombol Submit Password
+        document.getElementById('btnSubmitPassword').addEventListener('click', processPassword);
+
+        // Fitur klik tombol "Enter" di keyboard
+        document.getElementById('inputPasswordAkses').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') { processPassword(); }
         });
 
-        $('#minDate, #maxDate').on('change', () => { if(dataTable) dataTable.draw(); });
-        function resetFilter() { $('#minDate').val(''); $('#maxDate').val(''); if(dataTable) dataTable.draw(); }
+        // Proses validasi password
+        function processPassword() {
+            const inputPw = document.getElementById('inputPasswordAkses').value;
+            const errorMsg = document.getElementById('passwordError');
+            
+            // Aturan Password
+            let validPassword = (targetSecureType === 'keuangan') ? 'LapKeuanganKKN' : 'LaporanKKN';
+            
+            if (inputPw === validPassword) {
+                errorMsg.style.display = 'none';
+                passwordModalInstance.hide();
+                window.open(targetSecureUrl, '_blank');
+                showToast('Akses diberikan. Dokumen berhasil dibuka.', 'success');
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
 
-        // Tampil Modal
+        // ---------------- TABEL 2: LAPORAN ----------------
+        function loadDataLaporan() {
+            document.getElementById('tabelBodyLaporan').innerHTML = `<tr><td colspan="9" class="text-center py-5 text-muted"><div class="spinner-border text-danger me-2"></div> Menarik data laporan...</td></tr>`;
+            if ($.fn.DataTable.isDataTable('#tabelDataLaporan')) { $('#tabelDataLaporan').DataTable().destroy(); }
+            
+            fetch(scriptURL + "?type=laporan", { redirect: 'follow' })
+                .then(res => res.json())
+                .then(jsonData => {
+                    const tbody = document.getElementById('tabelBodyLaporan');
+                    tbody.innerHTML = '';
+                    if(jsonData.length === 0 || jsonData.error) {
+                         tbody.innerHTML = '<tr><td colspan="9" class="text-center py-5">Belum ada data laporan resmi.</td></tr>'; return;
+                    }
+                    jsonData.forEach((row, index) => {
+                        const badgeClass = row.jenis === 'KKN GENTASKIN' ? 'badge-gentaskin' : row.jenis === 'KKN Regular Tematik' ? 'badge-tematik' : 'badge-regular';
+                        
+                        // Perubahan struktur tombol ke fungsi openSecureFile
+                        const btnLap = row.urlLaporan ? `<button onclick="openSecureFile('${row.urlLaporan}', 'laporan')" class="btn btn-sm btn-danger rounded-circle shadow-sm" title="Buka PDF"><i class="fas fa-file-pdf"></i></button>` : '-';
+                        const btnJur = row.urlJurnal ? `<button onclick="openSecureFile('${row.urlJurnal}', 'laporan')" class="btn btn-sm btn-danger rounded-circle shadow-sm" title="Buka PDF"><i class="fas fa-file-pdf"></i></button>` : '-';
+                        const btnKeu = row.urlKeuangan ? `<button onclick="openSecureFile('${row.urlKeuangan}', 'keuangan')" class="btn btn-sm btn-success rounded-circle shadow-sm" title="Buka Keuangan"><i class="fas fa-lock"></i></button>` : '-';
+                        
+                        tbody.innerHTML += `
+                            <tr>
+                                <td class="text-center fw-medium">${index + 1}</td>
+                                <td class="small text-muted">${row.tanggal_upload}</td>
+                                <td class="fw-semibold">${row.nama_pengirim}</td>
+                                <td>${row.dosen_pendamping}</td>
+                                <td><span class="custom-badge ${badgeClass}">${row.jenis_kkn}</span></td>
+                                <td>${row.lokasi_kkn}</td>
+                                <td class="text-center">${btnLap}</td>
+                                <td class="text-center">${btnJur}</td>
+                                <td class="text-center">${btnKeu}</td>
+                            </tr>
+                        `;
+                    });
+                    dataTableLaporan = $('#tabelDataLaporan').DataTable({ "language": { "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/id.json" }, "ordering": false, "pageLength": 5 });
+                }).catch(() => {
+                    document.getElementById('tabelBodyLaporan').innerHTML = '<tr><td colspan="9" class="text-center text-danger py-5"><i class="fas fa-exclamation-circle me-1"></i> Data laporan gagal dimuat.</td></tr>';
+                });
+        }
+
+        // Modal Foto Logic (Pop-Up Detail Tabel)
         function showDetailModal(index) {
             const row = kknDataList[index];
             document.getElementById('modalNama').textContent = row.nama;
             document.getElementById('modalKegiatan').textContent = row.kegiatan;
             document.getElementById('modalTglDesa').textContent = row.tanggal + " - " + row.desa;
             document.getElementById('modalDeskripsi').innerHTML = row.deskripsi;
-            
             const badgeClass = row.jenis === 'KKN GENTASKIN' ? 'badge-gentaskin' : row.jenis === 'KKN Regular Tematik' ? 'badge-tematik' : 'badge-regular';
             document.getElementById('modalJenis').className = 'custom-badge ' + badgeClass;
             document.getElementById('modalJenis').textContent = row.jenis;
-
-            const fotoUrls = row.foto.split(',');
+            
+            const fotoUrls = (row.foto || '').split(',');
             let carouselHtml = '';
-
             if (fotoUrls.length === 1 && fotoUrls[0].trim() === "") {
                 carouselHtml = '<div class="p-5 bg-light rounded text-muted"><i class="fas fa-image fa-3x mb-2 opacity-50"></i><br>Tidak ada foto</div>';
             } else {
@@ -668,15 +988,12 @@
                     let fileId = "";
                     if (cleanUrl.includes('id=')) fileId = cleanUrl.split('id=')[1];
                     else if (cleanUrl.includes('/d/')) fileId = cleanUrl.split('/d/')[1].split('/')[0];
-                    
                     const renderUrl = fileId ? `https://lh3.googleusercontent.com/d/${fileId}` : '';
                     carouselHtml += `
                     <div class="carousel-item ${idx === 0 ? 'active' : ''}">
                         <img src="${renderUrl}" class="d-block w-100" style="height: 400px; object-fit: contain; background: #e2e8f0;" alt="Foto ${idx+1}">
                         <div class="p-3 text-center bg-white border-top">
-                            <a href="${renderUrl}" target="_blank" class="btn btn-outline-primary rounded-pill px-4">
-                                <i class="fas fa-download me-1"></i> Unduh Foto ${idx + 1}
-                            </a>
+                            <a href="${renderUrl}" target="_blank" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-download me-1"></i> Unduh</a>
                         </div>
                     </div>`;
                 });
@@ -696,22 +1013,17 @@
             new bootstrap.Modal(document.getElementById('detailModal')).show();
         }
 
-        // PWA
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault(); deferredPrompt = e;
-            document.getElementById('installPwaBtn').style.display = 'block';
-        });
-        document.getElementById('installPwaBtn').addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                if ((await deferredPrompt.userChoice).outcome === 'accepted') document.getElementById('installPwaBtn').style.display = 'none';
-                deferredPrompt = null;
-            }
-        });
+        // Fitur PWA (Service Worker) jika ada
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(err => console.log('SW Gagal:', err)));
         }
     </script>
+
+
+
+
+
+
+
 </body>
 </html>
