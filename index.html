@@ -65,6 +65,7 @@
         </ul>
     </nav>
 
+<<<<<<< HEAD
     <!-- Sidebar & Layout Wrapper[cite: 2] -->
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
@@ -86,6 +87,214 @@
                     <div class="sidenav-footer-content">
                         <div class="sidenav-footer-subtitle">Login sebagai:</div>
                         <div class="sidenav-footer-title">Admin IT</div>
+=======
+    <!-- Header Banner -->
+    <div class="header-banner text-center">
+        <div class="container">
+            <h1 class="fw-bold mb-3" id="headerTitle">Sistem Upload Dokumentasi</h1>
+            <p class="lead opacity-75 mb-0" id="headerSubtitle">Kelola dan unggah file dokumentasi kegiatan KKN dengan terstruktur.</p>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        
+        <!-- BAGIAN 1: FORM UPLOAD MENGGABUNGKAN FOTO & LAPORAN -->
+        <div id="section-upload">
+            <!-- Penambahan align-items-stretch agar kedua form sejajar dan memiliki tinggi rata -->
+            <div class="row justify-content-center align-items-stretch card-wrapper g-4">
+                
+
+
+
+
+
+
+
+
+
+<!-- BAGIAN 1: FORM UPLOAD MENGGABUNGKAN FOTO & LAPORAN -->
+        <div id="section-upload">
+            <div class="row justify-content-center align-items-stretch card-wrapper g-4">
+                
+                <!-- KOLOM KIRI: FORM FOTO -->
+                <div class="col-lg-6">
+                    <div class="main-card">
+                        <div class="text-center mb-5">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 64px; height: 64px; background: #eff6ff; color: #3b82f6;">
+                                <i class="fas fa-folder-open fa-2x"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark">Formulir Pengumpulan Foto Kegiatan</h4>
+                        </div>
+                        
+                        <form id="uploadForm">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <label class="form-label">Nama Lengkap</label>
+                                    <div class="input-group rounded-3 overflow-hidden">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <input type="text" class="form-control" id="namaLengkap" placeholder="Budi Santoso" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Desa KKN</label>
+                                    <div class="input-group rounded-3 overflow-hidden">
+                                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                        <input type="text" class="form-control" id="desaKkn" placeholder="Desa Suka Maju" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Jenis KKN</label>
+                                    <div class="input-group rounded-3 overflow-hidden">
+                                        <span class="input-group-text"><i class="fas fa-tags"></i></span>
+                                        <select class="form-select" id="jenisKkn" required>
+                                            <option value="" disabled selected>Pilih KKN...</option>
+                                            <option value="KKN GENTASKIN">KKN GENTASKIN</option>
+                                            <option value="KKN Regular Tematik">KKN Regular Tematik</option>
+                                            <option value="KKN Regular">KKN Regular</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Nama Kegiatan</label>
+                                    <div class="input-group rounded-3 overflow-hidden">
+                                        <span class="input-group-text"><i class="fas fa-clipboard-check"></i></span>
+                                        <input type="text" class="form-control" id="namaKegiatan" placeholder="Sosialisasi UMKM" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <label class="form-label">Deskripsi Singkat</label>
+                                    <div id="editor"><p><br></p></div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label">Upload Foto Dokumentasi</label>
+                                    <div class="upload-area p-5 text-center position-relative">
+                                        <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                                        <input class="form-control stretched-link opacity-0 position-absolute top-0 start-0 w-100 h-100" type="file" id="foto" accept="image/png, image/jpeg" multiple required style="cursor: pointer;">
+                                        <div class="fw-bold text-dark fs-5" id="fileInfoText">Klik / Seret Foto</div>
+                                        <div class="small text-muted mt-2">Maksimal 5 Foto (JPG/PNG).</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- PROGRESS BAR FOTO -->
+                                <div class="col-12" id="progressContainer" style="display: none;">
+                                    <div class="progress shadow-sm" style="height: 25px; border-radius: 12px; background-color: #e2e8f0;">
+                                        <div id="uploadProgressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-primary fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                    </div>
+                                    <div class="text-center mt-2 small fw-medium text-primary" id="progressText">Memproses...</div>
+                                </div>
+                                
+                                <div class="col-12 pt-2 d-flex flex-column flex-md-row gap-3">
+                                    <button type="submit" id="btnSubmitFoto" class="btn btn-primary w-100 py-3 shadow-sm">
+                                        <i class="fas fa-paper-plane me-2"></i> Unggah Dokumentasi
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- KOLOM KANAN: FORM LAPORAN -->
+                <div class="col-lg-6">
+                    <div class="main-card">
+                        <div class="text-center mb-5">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3" style="width: 64px; height: 64px; background: #fef2f2; color: #dc2626;">
+                                <i class="fas fa-file-pdf fa-2x"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark">Formulir Pengumpulan Laporan KKN</h4>
+                        </div>
+                        
+                        <form id="laporanForm">
+                            <!-- INFORMASI UPLOAD -->
+                            <div class="card mb-4 shadow-sm border-0">
+                                <div class="card-header bg-light border-bottom-0 py-3">
+                                    <h5 class="mb-0 fw-bold text-dark fs-6">Informasi Pengiriman</h5>
+                                </div>
+                                <div class="card-body bg-white rounded-bottom">
+                                    <div class="form-group mb-4">
+                                        <label for="tanggal_upload">Tanggal Upload</label>
+                                        <input type="text" class="form-control bg-light" id="tanggal_upload" name="tanggal_upload" readonly>
+                                        <small class="form-text text-muted mt-2">Batas akhir: <strong>10 September 2026</strong>.</small>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label for="nama_pengirim">Nama Pengirim <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="nama_pengirim" name="nama_pengirim" placeholder="Nama Lengkap" required>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="dosen_pendamping">Dosen Pendamping <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="dosen_pendamping" name="dosen_pendamping" placeholder="Dr. Nama, M.Si." required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- INFORMASI KKN -->
+                            <div class="card mb-4 shadow-sm border-0">
+                                <div class="card-header bg-light border-bottom-0 py-3">
+                                    <h5 class="mb-0 fw-bold text-dark fs-6">Informasi KKN</h5>
+                                </div>
+                                <div class="card-body bg-white rounded-bottom">
+                                    <div class="form-group mb-4">
+                                        <label for="formLaporanJenisKkn">Jenis KKN <span class="text-danger">*</span></label>
+                                        <select class="form-control form-select" id="formLaporanJenisKkn" name="jenis_kkn" required>
+                                            <option value="">-- Pilih Jenis KKN --</option>
+                                            <option value="KKN GENTASKIN">KKN GENTASKIN</option>
+                                            <option value="KKN Regular">KKN Reguler</option>
+                                            <option value="KKN Regular Tematik">KKN Reguler Tematik</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="lokasi_kkn">Lokasi KKN <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="lokasi_kkn" name="lokasi_kkn" rows="2" placeholder="Desa ..., Kec ..., Kab ..." required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- DOKUMEN LAPORAN -->
+                            <div class="card mb-4 shadow-sm border-0">
+                                <div class="card-header bg-light border-bottom-0 py-3">
+                                    <h5 class="mb-0 fw-bold text-dark fs-6">Upload Dokumen KKN</h5>
+                                </div>
+                                <div class="card-body bg-white rounded-bottom">
+                                    <div class="form-group mb-4">
+                                        <label for="laporan_kegiatan">Laporan Kegiatan (PDF) <span class="text-danger">*</span></label>
+                                        <input type="file" class="form-control" id="laporan_kegiatan" name="laporan_kegiatan" accept=".pdf,application/pdf" required>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label for="jurnal_kkn">Jurnal KKN (Khusus Untuk KKN Reguler dan KKN Reguler Tematik)</label>
+                                        <input type="file" class="form-control" id="jurnal_kkn" name="jurnal_kkn" accept=".pdf,application/pdf">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="laporan_keuangan">Laporan Keuangan (Excel) <span class="badge bg-warning text-dark ms-1"><i class="fas fa-lock me-1"></i> Privat</span></label>
+                                        <input type="file" class="form-control" id="laporan_keuangan" name="laporan_keuangan" accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PERNYATAAN -->
+                            <div class="form-group mb-4 px-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="persetujuan" name="persetujuan" required>
+                                    <label class="form-check-label text-dark fw-medium ms-2" for="persetujuan">
+                                        Data dan dokumen yang diunggah adalah benar.
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- PROGRESS BAR LAPORAN -->
+                            <div class="form-group mb-3" id="progressContainerLaporan" style="display: none;">
+                                <div class="progress shadow-sm" style="height: 25px; border-radius: 12px; background-color: #e2e8f0;">
+                                    <div id="uploadProgressBarLaporan" class="progress-bar progress-bar-striped progress-bar-animated bg-danger fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                                <div class="text-center mt-2 small fw-medium text-danger" id="progressTextLaporan">Menyiapkan file laporan...</div>
+                            </div>
+
+                            <div class="form-group d-flex gap-3">
+                                <button type="submit" id="btnSubmitLaporan" class="btn btn-danger py-3 w-100 shadow-sm" style="border-radius: 10px; font-weight: 600;">                                    <i class="fas fa-upload me-2"></i> Kirim Laporan
+                                </button>
+                            </div>
+                        </form>
+>>>>>>> b849dfcaaba9e825390216cdcfcb4674479a2beb
                     </div>
                 </div>
             </nav>
