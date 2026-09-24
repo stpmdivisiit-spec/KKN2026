@@ -1,93 +1,116 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Pangkalan Data Dokumentasi - STPM Santa Ursula</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Upload Dokumentasi KKN</title>
     
-    <!-- DataTables & Export Buttons CSS -->
-    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css" rel="stylesheet" />
+    <!-- PWA Setup -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
-    <!-- SB Admin Pro Core CSS[cite: 2] -->
-    <link href="css/styles.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+    <!-- Bootstrap 5 & DataTables -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     
-    <!-- Icons[cite: 2] -->
-    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
-    
+    <!-- Quill.js for Text Editor -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     <style>
-        /* Custom Padding & Tweak untuk DataTables di SB Admin Pro */
-        .dt-buttons .btn { margin-right: 5px; border-radius: 0.35rem; }
-        .dataTables_filter input { border-radius: 0.35rem; border: 1px solid #c5ccd6; padding: 0.375rem 0.75rem; }
-        .dataTables_length select { border-radius: 0.35rem; border: 1px solid #c5ccd6; padding: 0.375rem 2.25rem 0.375rem 0.75rem; }
+        :root {
+            --primary-color: #3b82f6; 
+            --primary-hover: #2563eb;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-main);
+        }
+
+        /* Navbar */
+        .navbar { background: var(--bg-card); border-bottom: 1px solid var(--border-color); }
+        .nav-btn { color: var(--text-muted); background: transparent; border: 1px solid transparent; transition: all 0.2s ease; }
+        .nav-btn:hover { background: #f1f5f9; }
+        .nav-btn.active { background: var(--primary-color); color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); }
+
+        /* Header Banner */
+        .header-banner { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 60px 0 140px; color: white; }
+
+        /* Main Card - Diperbaiki agar seragam */
+        .card-wrapper {
+            margin-top: -80px; /* Ditarik ke atas banner secara seragam pada row pembungkus */
+        }
+        .main-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            height: 100%; /* Memastikan form memanjang rapi */
+        }
+
+        /* Forms */
+        .form-label, .form-group label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+        .input-group-text, .form-control, .form-select, .form-control-file { background-color: #f8fafc; border: 1px solid var(--border-color); padding: 0.75rem 1rem; font-size: 0.95rem; }
+        .input-group-text { color: var(--primary-color); border-right: none; }
+        .form-control, .form-select { border-left: none; color: var(--text-main); }
+        .form-group .form-control { border-left: 1px solid var(--border-color); border-radius: 8px; }
+        .form-control:focus, .form-select:focus { background-color: #ffffff; box-shadow: none; border-color: var(--primary-color); }
+        .form-control:focus + .input-group-text, .form-control:focus-within { border-color: var(--primary-color); }
+        .input-group:focus-within .input-group-text, .input-group:focus-within .form-control, .input-group:focus-within .form-select { border-color: var(--primary-color); background-color: #ffffff; }
+
+        /* Upload Area */
+        .upload-area { border: 2px dashed #cbd5e1; border-radius: 12px; background: #f8fafc; transition: all 0.3s ease; cursor: pointer; }
+        .upload-area:hover { border-color: var(--primary-color); background: #eff6ff; }
+
+        /* Buttons */
+        .btn-primary { background: var(--primary-color); border: none; padding: 12px 24px; font-weight: 600; border-radius: 10px; transition: all 0.3s; }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3); }
+
+        /* Table & Badges */
+        .table-custom th { background: #f1f5f9; color: var(--text-muted); font-weight: 600; border-bottom: 2px solid var(--border-color); font-size: 0.85rem; text-transform: uppercase; }
+        .table-custom td { vertical-align: middle; color: var(--text-main); border-bottom: 1px solid var(--border-color); }
+        .badge-gentaskin { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+        .badge-tematik { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+        .badge-regular { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+        .custom-badge { padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 0.8rem; }
+
+        /* Quill Editor */
+        #editor { min-height: 120px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-color: var(--border-color); }
+        .ql-toolbar { border-top-left-radius: 10px; border-top-right-radius: 10px; border-color: var(--border-color) !important; background: #f8fafc; }
+        .ql-container { border-color: var(--border-color) !important; }
     </style>
 </head>
-<body class="nav-fixed">
+<body>
 
-    <!-- Top Navbar[cite: 2] -->
-    <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
-        <!-- Sidenav Toggle Button-->
-        <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle">
-            <i data-feather="menu"></i>
-        </button>
-        <!-- Navbar Brand-->
-        <a class="navbar-brand pe-3 ps-4 ps-lg-2 text-primary fw-bold" href="index.html">Divisi IT STPM</a>
-        
-        <!-- Navbar Items-->
-        <ul class="navbar-nav align-items-center ms-auto">
-            <!-- User Dropdown-->
-            <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
-                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="img-fluid" src="assets/img/illustrations/profiles/profile-1.png" />
-                </a>
-                <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
-                    <h6 class="dropdown-header d-flex align-items-center">
-                        <img class="dropdown-user-img" src="assets/img/illustrations/profiles/profile-1.png" />
-                        <div class="dropdown-user-details">
-                            <div class="dropdown-user-details-name">Agustinus Novelos</div>
-                            <div class="dropdown-user-details-email">IT Division</div>
-                        </div>
-                    </h6>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#!">
-                        <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                        Pengaturan
-                    </a>
-                    <a class="dropdown-item" href="#!">
-                        <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                        Logout
-                    </a>
-                </div>
-            </li>
-        </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="#">
+                <i class="fas fa-layer-group me-2 fs-4"></i>Portal KKN
+            </a>
+            <div class="d-flex gap-2">
+                <button id="btnTabUpload" class="btn nav-btn active rounded-pill px-4 fw-medium" onclick="switchTab('upload')">
+                    <i class="fas fa-cloud-upload-alt me-2"></i> Form Upload
+                </button>
+                <button id="btnTabData" class="btn nav-btn rounded-pill px-4 fw-medium" onclick="switchTab('data')">
+                    <i class="fas fa-database me-2"></i> Data Dokumentasi
+                </button>
+            </div>
+        </div>
     </nav>
 
-<<<<<<< HEAD
-    <!-- Sidebar & Layout Wrapper[cite: 2] -->
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sidenav shadow-right sidenav-light">
-                <div class="sidenav-menu">
-                    <div class="nav accordion" id="accordionSidenav">
-                        <div class="sidenav-menu-heading">Menu Utama</div>
-                        <a class="nav-link active" href="index.html">
-                            <div class="nav-link-icon"><i data-feather="database"></i></div>
-                            Dashboard Dokumentasi
-                        </a>
-                        <a class="nav-link" href="#">
-                            <div class="nav-link-icon"><i data-feather="box"></i></div>
-                            Inventaris Institusi
-                        </a>
-                    </div>
-                </div>
-                <div class="sidenav-footer">
-                    <div class="sidenav-footer-content">
-                        <div class="sidenav-footer-subtitle">Login sebagai:</div>
-                        <div class="sidenav-footer-title">Admin IT</div>
-=======
     <!-- Header Banner -->
     <div class="header-banner text-center">
         <div class="container">
@@ -186,7 +209,7 @@
                                 </div>
                                 
                                 <div class="col-12 pt-2 d-flex flex-column flex-md-row gap-3">
-                                    <button type="submit" id="btnSubmitFoto" class="btn btn-primary w-100 py-3 shadow-sm">
+                                    <button type="submit" id="btnSubmitFoto" class="btn btn-primary w-100 py-3 shadow-sm" disabled>
                                         <i class="fas fa-paper-plane me-2"></i> Unggah Dokumentasi
                                     </button>
                                 </div>
@@ -290,331 +313,714 @@
                             </div>
 
                             <div class="form-group d-flex gap-3">
-                                <button type="submit" id="btnSubmitLaporan" class="btn btn-danger py-3 w-100 shadow-sm" style="border-radius: 10px; font-weight: 600;">                                    <i class="fas fa-upload me-2"></i> Kirim Laporan
+                                <button type="submit" id="btnSubmitLaporan" class="btn btn-danger py-3 w-100 shadow-sm" style="border-radius: 10px; font-weight: 600;" disabled>                                    <i class="fas fa-upload me-2"></i> Kirim Laporan
                                 </button>
                             </div>
                         </form>
->>>>>>> b849dfcaaba9e825390216cdcfcb4674479a2beb
                     </div>
                 </div>
-            </nav>
+
+            </div>
         </div>
 
-        <!-- Main Content -->
-        <div id="layoutSidenav_content">
-            <main>
-                <!-- Page Header bergaya SB Admin Pro (Gradient)[cite: 2] -->
-                <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-                    <div class="container-xl px-4">
-                        <div class="page-header-content pt-4">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-auto mt-4">
-                                    <h1 class="page-header-title">
-                                        <div class="page-header-icon"><i data-feather="folder-plus"></i></div>
-                                        Pangkalan Data Dokumentasi
-                                    </h1>
-                                    <div class="page-header-subtitle">Kelola dan unggah file dokumentasi kegiatan dengan rapi dan terstruktur.</div>
-                                </div>
-                            </div>
+        <!-- ================= MODAL KONFIRMASI ================= -->
+        
+        <!-- Modal Konfirmasi Foto -->
+        <div class="modal fade" id="modalConfirmFoto" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content rounded-4 border-0 shadow">
+                    <div class="modal-body p-4 text-center">
+                        <i class="fas fa-question-circle fa-4x text-primary mb-3"></i>
+                        <h5 class="fw-bold mb-3">Unggah Dokumentasi?</h5>
+                        <p class="text-muted mb-4">Apakah Anda yakin data dan foto kegiatan yang akan diunggah sudah benar? Pastikan tidak ada kesalahan sebelum melanjutkan.</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <button type="button" class="btn btn-light px-4 py-2 fw-medium" data-bs-dismiss="modal">Tidak, Cek Lagi</button>
+                            <button type="button" class="btn btn-primary px-4 py-2 fw-medium" id="btnProsesFoto">Iya, Unggah Sekarang</button>
                         </div>
                     </div>
-                </header>
+                </div>
+            </div>
+        </div>
 
-                <!-- Main Page Content[cite: 2] -->
-                <div class="container-xl px-4 mt-n10">
-                    <div class="card mb-4 shadow-sm">
-                        <!-- Card Header Actions[cite: 2] -->
-                        <div class="card-header card-header-actions bg-white text-dark fw-bold">
-                            <span><i class="fas fa-table me-2 text-primary"></i>Data Kegiatan STPM Santa Ursula</span>
-                            <button class="btn btn-primary btn-sm rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#modalDokumentasi">
-                                <i data-feather="plus" class="me-1"></i> Tambah Dokumentasi
+        <!-- Modal Konfirmasi Laporan -->
+        <div class="modal fade" id="modalConfirmLaporan" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content rounded-4 border-0 shadow">
+                    <div class="modal-body p-4 text-center">
+                        <i class="fas fa-file-signature fa-4x text-danger mb-3"></i>
+                        <h5 class="fw-bold mb-3">Kirim Laporan KKN?</h5>
+                        <p class="text-muted mb-4">Pastikan dokumen PDF/Excel yang Anda pilih sudah final. Data yang dikirim akan tersimpan di sistem pusat.</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <button type="button" class="btn btn-light px-4 py-2 fw-medium" data-bs-dismiss="modal">Tidak, Batal</button>
+                            <button type="button" class="btn btn-danger px-4 py-2 fw-medium" id="btnProsesLaporan">Iya, Kirim Laporan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+        <!-- BAGIAN 2: DATA DOKUMENTASI & LAPORAN -->
+        <div id="section-data" style="display: none;">
+            <div class="row justify-content-center card-wrapper">
+                
+                <!-- TABEL 1: FOTO -->
+                <div class="col-lg-12 mb-5">
+                    <div class="main-card">
+                        <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+                            <h4 class="fw-bold m-0 text-dark"><i class="fas fa-images text-primary me-2"></i>Database Dokumentasi Foto</h4>
+                            <button class="btn btn-light rounded-circle shadow-sm border" onclick="loadDataKkn()" title="Refresh Data">
+                                <i class="fas fa-sync-alt text-primary"></i>
                             </button>
                         </div>
-                        <div class="card-body">
-                            <!-- Filter Tanggal Section -->
-                            <div class="row mb-4 bg-light p-3 rounded-3 border mx-0">
-                                <div class="col-md-4 mb-2 mb-md-0">
-                                    <label class="fw-bold small text-muted text-uppercase mb-1">Mulai Tanggal:</label>
-                                    <input type="date" id="minDate" class="form-control form-control-solid">
-                                </div>
-                                <div class="col-md-4 mb-2 mb-md-0">
-                                    <label class="fw-bold small text-muted text-uppercase mb-1">Sampai Tanggal:</label>
-                                    <input type="date" id="maxDate" class="form-control form-control-solid">
-                                </div>
-                                <div class="col-md-4 d-flex align-items-end">
-                                    <button id="btnResetFilter" class="btn btn-secondary w-100"><i data-feather="refresh-cw" class="me-2"></i>Reset Filter</button>
-                                </div>
-                            </div>
-
-                            <!-- Tabel Data -->
-                            <div class="table-responsive">
-                                <table id="tabelDokumentasi" class="table table-bordered table-hover align-middle w-100">
-                                    <thead class="bg-light">
-                                        <tr>
-                                            <th class="text-center" width="5%">No</th>
-                                            <th width="20%">Nama Kegiatan</th>
-                                            <th width="15%">Unit / Divisi</th>
-                                            <th width="15%">Tanggal</th>
-                                            <th width="20%">Dokumentasi Foto</th>
-                                            <th class="text-center" width="15%">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="dataBody">
-                                        <!-- State Loading Default -->
-                                        <tr>
-                                            <td colspan="6" class="text-center py-5">
-                                                <div class="spinner-border text-primary" role="status"></div>
-                                                <div class="mt-2 text-muted">Menarik data dari Spreadsheet...</div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        
+                        <div class="table-responsive">
+                            <table id="tabelKkn" class="table table-hover table-custom w-100 align-middle">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th>Tanggal</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>Desa KKN</th>
+                                        <th>Jenis KKN</th>
+                                        <th>Kegiatan</th>
+                                        <th>Deskripsi</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelBody">
+                                    <tr>
+                                        <td colspan="8" class="text-center py-5 text-muted">
+                                            <div class="spinner-border text-primary me-2" role="status" style="width: 1.5rem; height: 1.5rem;"></div> 
+                                            Menarik data foto dari server...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-            </main>
 
-            <!-- Footer[cite: 2] -->
-            <footer class="footer-admin mt-auto footer-light">
-                <div class="container-xl px-4">
-                    <div class="row">
-                        <div class="col-md-6 small">Copyright &copy; Divisi IT STPM Santa Ursula Ende 2026</div>
+                <!-- TABEL 2: LAPORAN -->
+                <div class="col-lg-12">
+                    <div class="main-card border-top border-danger border-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+                            <h4 class="fw-bold m-0 text-dark"><i class="fas fa-file-alt text-danger me-2"></i>Database Laporan Resmi</h4>
+                            <button class="btn btn-light rounded-circle shadow-sm border" onclick="loadDataLaporan()" title="Refresh Data Laporan">
+                                <i class="fas fa-sync-alt text-danger"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table id="tabelDataLaporan" class="table table-hover table-custom w-100 align-middle">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">No</th>
+                                        <th>Waktu Upload</th>
+                                        <th>Pengirim</th>
+                                        <th>Dosen Pendamping</th>
+                                        <th>Jenis KKN</th>
+                                        <th>Lokasi</th>
+                                        <th class="text-center">File Lap.</th>
+                                        <th class="text-center">File Jur.</th>
+                                        <th class="text-center">File Keu.</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelBodyLaporan">
+                                    <tr>
+                                        <td colspan="9" class="text-center py-5 text-muted">
+                                            <div class="spinner-border text-danger me-2" role="status" style="width: 1.5rem; height: 1.5rem;"></div> 
+                                            Menarik data laporan dari server...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </footer>
+
+            </div>
         </div>
     </div>
 
-    <!-- Modal Form Upload -->
-    <div class="modal fade" id="modalDokumentasi" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title text-white" id="modalLabel"><i class="fas fa-file-upload me-2"></i>Form Dokumentasi Kegiatan</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- MODAL POPUP DETAIL FOTO -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+          <div class="modal-header border-bottom-0 pb-0 pt-4 px-4">
+            <h5 class="modal-title fw-bold"><i class="fas fa-image text-primary me-2"></i>Detail Dokumentasi</h5>
+            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+              <div id="modalFotoContainer" class="mb-4 text-center"></div>
+              <div class="p-4 rounded-3 mb-4" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+                  <div class="row g-4">
+                      <div class="col-6 col-md-3">
+                          <span class="form-label d-block">Nama Mahasiswa</span>
+                          <strong id="modalNama" class="text-dark fs-6"></strong>
+                      </div>
+                      <div class="col-6 col-md-3">
+                          <span class="form-label d-block">Kegiatan</span>
+                          <strong id="modalKegiatan" class="text-dark fs-6"></strong>
+                      </div>
+                      <div class="col-6 col-md-3">
+                          <span class="form-label d-block">Jenis KKN</span>
+                          <div class="mt-1"><span id="modalJenis" class="custom-badge d-inline-block"></span></div>
+                      </div>
+                      <div class="col-6 col-md-3">
+                          <span class="form-label d-block">Tanggal & Desa</span>
+                          <strong id="modalTglDesa" class="text-dark fs-6"></strong>
+                      </div>
+                  </div>
+              </div>
+              <h6 class="fw-bold mb-3 text-dark">Deskripsi Catatan:</h6>
+              <div id="modalDeskripsi" class="p-3 border rounded-3 bg-white text-muted" style="min-height: 80px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL INPUT PASSWORD DOKUMEN -->
+    <div class="modal fade" id="modalPasswordFile" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header border-bottom-0 pb-0 pt-4 px-4">
+                    <h5 class="modal-title fw-bold text-dark"><i class="fas fa-lock text-warning me-2"></i>Akses Terkunci</h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body p-4">
-                    <form id="formDok">
-                        <div class="mb-3">
-                            <label for="nama_kegiatan" class="form-label fw-bold text-dark">Nama Kegiatan <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control form-control-solid" id="nama_kegiatan" placeholder="Contoh: Rapat Koordinasi Tahunan" required>
+                <div class="modal-body p-4 text-center">
+                    <p class="text-muted small mb-4">Masukkan kata sandi untuk mengunduh/melihat dokumen ini.</p>
+                    <div class="form-group mb-3 text-start">
+                        <input type="password" id="inputPasswordAkses" class="form-control text-center" placeholder="Masukkan Kata Sandi">
+                        <div id="passwordError" class="text-danger small mt-2 text-center fw-medium" style="display:none;">
+                            <i class="fas fa-exclamation-circle"></i> Kata sandi salah!
                         </div>
-                        <div class="row gx-3">
-                            <div class="col-md-6 mb-3">
-                                <label for="nama_unit" class="form-label fw-bold text-dark">Nama Unit / Divisi <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-solid" id="nama_unit" value="Divisi IT" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="tanggal" class="form-label fw-bold text-dark">Tanggal Kegiatan <span class="text-danger">*</span></label>
-                                <input type="date" class="form-control form-control-solid" id="tanggal" required>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="foto_kegiatan" class="form-label fw-bold text-dark">Upload Foto <span class="text-danger">*</span></label>
-                            <div class="card bg-light border-dashed">
-                                <div class="card-body text-center p-5">
-                                    <i data-feather="upload-cloud" class="text-primary mb-2" style="height: 40px; width: 40px;"></i>
-                                    <input type="file" class="form-control form-control-solid mt-3" id="foto_kegiatan" accept=".png, .jpg, .jpeg" required>
-                                    <div class="small text-muted mt-2">Otomatis di-*rename*: <code>kegiatan-unit-tanggal.png</code></div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" id="btnSimpan" onclick="simpanData()">
-                        <span id="btnText"><i class="fas fa-save me-1"></i> Simpan Data</span>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100 py-2 fw-medium rounded-3" id="btnSubmitPassword">
+                        Buka Dokumen
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts Core Template -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script> <!-- Script Sidebar SB Admin Pro[cite: 2] -->
 
-    <!-- DataTables & Export Plugins -->
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-4">
+        <div id="liveToast" class="toast align-items-center text-white border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body fw-medium py-3" id="toastMessage"></div>
+                <button type="button" class="btn-close btn-close-white me-3 m-auto shadow-none" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
-    <script>
-        // Init Feather Icons (Wajib untuk SB Admin Pro)
-        feather.replace();
+  
+  
 
-        // Variabel global untuk DataTables
-        var table;
 
-        $(document).ready(function() {
-            // Setup Ekstensi Filter Rentang Tanggal DataTables
-            $.fn.dataTable.ext.search.push(
-                function(settings, data, dataIndex) {
-                    var min = $('#minDate').val();
-                    var max = $('#maxDate').val();
-                    var dateStr = data[3]; // Index 3 adalah kolom 'Tanggal' pada thead
-                    var dateObj = new Date(dateStr);
 
-                    if (
-                        (min === "" && max === "") ||
-                        (min === "" && dateObj <= new Date(max)) ||
-                        (new Date(min) <= dateObj && max === "") ||
-                        (new Date(min) <= dateObj && dateObj <= new Date(max))
-                    ) {
-                        return true;
-                    }
-                    return false;
-                }
-            );
 
-            // Memicu pencarian tabel saat tanggal filter berubah
-            $('#minDate, #maxDate').on('change', function() {
-                if(table) table.draw();
-            });
 
-            // Reset Filter
-            $('#btnResetFilter').on('click', function() {
-                $('#minDate').val('');
-                $('#maxDate').val('');
-                if(table) table.draw();
-            });
 
-            // Load Data Pertama Kali
-            loadData();
+
+
+<script>
+        // URL WEB APP GOOGLE APPS SCRIPT
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx4k8rdYHta81IFvDAzpOspVwInnCdt0TeBgKOPKYjZWhFllmUswxMWRFwUyLNS79rDBg/exec'; 
+
+        // Set Waktu Realtime
+        function updateTanggalUpload() {
+            const now = new Date();
+            const dateString = now.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
+            const timeString = now.toLocaleTimeString('id-ID');
+            document.getElementById('tanggal_upload').value = `${dateString} ${timeString}`;
+        }
+        updateTanggalUpload();
+
+        // Init Editor Quill
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+            placeholder: 'Tuliskan deskripsi...',
+            modules: { toolbar: [ ['bold', 'italic', 'underline'], [{'list': 'ordered'}, {'list': 'bullet'}], ['clean'] ] }
         });
 
-        // ==========================================
-        // GANTI STRING DI BAWAH DENGAN URL DEPLOY GAS ANDA
-        // ==========================================
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyhZMfyIw5AlTZdRyfi9E4QrtZ94ps2_I47IqueHABC76EjBuwXBKz-vjQnFtoOGzeFXw/exec'; 
+        let kknDataList = [];
+        let dataTable, dataTableLaporan;
 
-        // Fungsi Load Data & Render DataTables
-        function loadData() {
-            if(scriptURL === 'https://script.google.com/macros/s/AKfycbyhZMfyIw5AlTZdRyfi9E4QrtZ94ps2_I47IqueHABC76EjBuwXBKz-vjQnFtoOGzeFXw/exec') {
-                document.getElementById('dataBody').innerHTML = '<tr><td colspan="6" class="text-center text-danger">Mohon masukkan URL Web App Google Apps Script Anda di dalam kode index.html.</td></tr>';
-                return;
-            }
-
-            fetch(scriptURL + "?action=read")
-                .then(response => response.json())
-                .then(data => {
-                    // Destroy instance DataTables jika sudah ada sebelum render ulang
-                    if ($.fn.DataTable.isDataTable('#tabelDokumentasi')) {
-                        $('#tabelDokumentasi').DataTable().destroy();
-                    }
-
-                    const tbody = document.getElementById('dataBody');
-                    tbody.innerHTML = ''; 
-                    
-                    data.forEach((row, index) => {
-                        let tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td class="text-center">${index + 1}</td>
-                            <td class="fw-bold">${row.nama_kegiatan}</td>
-                            <td><span class="badge bg-primary-soft text-primary rounded-pill">${row.nama_unit}</span></td>
-                            <td>${row.tanggal}</td>
-                            <td>
-                                <a href="${row.url_foto}" target="_blank" class="btn btn-sm btn-light text-primary fw-500">
-                                    <i data-feather="external-link" class="me-1"></i> Buka Foto
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <button class="btn btn-datatable btn-icon btn-transparent-dark me-2"><i data-feather="edit"></i></button>
-                                <button class="btn btn-datatable btn-icon btn-transparent-dark"><i data-feather="trash-2"></i></button>
-                            </td>
-                        `;
-                        tbody.appendChild(tr);
-                    });
-
-                    // Render ulang feather icons untuk elemen baru
-                    feather.replace();
-
-                    // Inisialisasi DataTables dengan fitur lengkap
-                    table = $('#tabelDokumentasi').DataTable({
-                        dom: "<'row mb-3 align-items-center'<'col-md-4'l><'col-md-4 text-center'B><'col-md-4'f>>" +
-                             "<'row'<'col-sm-12'tr>>" +
-                             "<'row mt-3'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                        lengthMenu: [[10, 25, 50, -1], ['10 Data', '25 Data', '50 Data', 'Semua Data']],
-                        buttons: [
-                            { extend: 'excelHtml5', className: 'btn btn-success btn-sm', text: '<i class="fas fa-file-excel me-1"></i> Excel' },
-                            { extend: 'pdfHtml5', className: 'btn btn-danger btn-sm', text: '<i class="fas fa-file-pdf me-1"></i> PDF' },
-                            { extend: 'print', className: 'btn btn-dark btn-sm', text: '<i class="fas fa-print me-1"></i> Cetak' }
-                        ],
-                        language: {
-                            search: "Pencarian Cepat:",
-                            lengthMenu: "Tampilkan _MENU_",
-                            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-                            paginate: { previous: "Sebelumnya", next: "Selanjutnya" }
-                        }
-                    });
-                })
-                .catch(error => {
-                    document.getElementById('dataBody').innerHTML = '<tr><td colspan="6" class="text-center text-danger">Gagal terhubung ke Google Apps Script.</td></tr>';
-                });
+        function showToast(message, type) {
+            const toastEl = document.getElementById('liveToast');
+            document.getElementById('toastMessage').textContent = message;
+            toastEl.className = `toast align-items-center text-white border-0 bg-${type}`;
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
         }
 
-        // Fungsi Simpan Data
-        function simpanData() {
-            const fileInput = document.getElementById('foto_kegiatan').files[0];
-            const btnSimpan = document.getElementById('btnSimpan');
-            const btnText = document.getElementById('btnText');
-            
-            if(!fileInput || !document.getElementById('nama_kegiatan').value || !document.getElementById('tanggal').value) {
-                alert("Mohon lengkapi semua form input dan pastikan foto sudah dipilih!");
-                return;
+        // Handle File Input UI Foto
+        document.getElementById('foto').addEventListener('change', function(e) {
+            const fileCount = e.target.files.length;
+            const infoText = document.getElementById('fileInfoText');
+            if (fileCount > 0) {
+                if(fileCount > 5) {
+                    infoText.innerHTML = `<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Maks 5 Foto!</span>`;
+                    showToast('Maksimal hanya boleh 5 foto!', 'danger');
+                } else {
+                    infoText.innerHTML = `<span class="text-success"><i class="fas fa-check-circle"></i> ${fileCount} foto terpilih!</span>`;
+                }
+            } else { infoText.innerHTML = "Klik / Seret Foto"; }
+        });
+
+        // ---------------- TAB LOGIC ----------------
+        function switchTab(tabName) {
+            const btnUpload = document.getElementById('btnTabUpload');
+            const btnData = document.getElementById('btnTabData');
+            if (tabName === 'upload') {
+                document.getElementById('section-upload').style.display = 'block';
+                document.getElementById('section-data').style.display = 'none';
+                btnUpload.classList.add('active'); btnData.classList.remove('active');
+                document.getElementById('headerTitle').textContent = 'Sistem Upload Dokumentasi';
+            } else {
+                document.getElementById('section-upload').style.display = 'none';
+                document.getElementById('section-data').style.display = 'block';
+                btnData.classList.add('active'); btnUpload.classList.remove('active');
+                document.getElementById('headerTitle').textContent = 'Database KKN';
+                loadDataKkn(); // Load Tabel Foto
+                loadDataLaporan(); // Load Tabel Laporan
             }
+        }
 
-            btnSimpan.disabled = true;
-            btnText.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Menyimpan...';
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const base64String = e.target.result.split(',')[1]; 
-                
+        // ==========================================
+        // SUBMIT FORM 1: DOKUMENTASI FOTO (MODAL & PROGRESS)
+        // ==========================================
+        let fotoModalInstance;
+        
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const files = document.getElementById('foto').files;
+            if (files.length === 0) { showToast('Pilih minimal 1 foto dokumentasi!', 'warning'); return; }
+            if (files.length > 5) { showToast('Maksimal 5 foto!', 'danger'); return; }
+
+            fotoModalInstance = new bootstrap.Modal(document.getElementById('modalConfirmFoto'));
+            fotoModalInstance.show();
+        });
+
+        document.getElementById('btnProsesFoto').addEventListener('click', async function() {
+            fotoModalInstance.hide(); 
+            
+            const files = document.getElementById('foto').files;
+            const submitBtn = document.getElementById('btnSubmitFoto');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('uploadProgressBar');
+            const progressText = document.getElementById('progressText');
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Memproses...';
+            
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+            progressText.textContent = 'Menyiapkan foto...';
+
+            let currentProgress = 0;
+            let progressInterval;
+
+            try {
+                progressInterval = setInterval(() => {
+                    if (currentProgress < 90) {
+                        currentProgress += Math.floor(Math.random() * 5) + 2; 
+                        if (currentProgress > 90) currentProgress = 90;
+                        progressBar.style.width = currentProgress + '%';
+                        progressBar.textContent = currentProgress + '%';
+                        if (currentProgress >= 40) progressText.textContent = 'Mengonversi foto ke sistem...';
+                        if (currentProgress >= 70) progressText.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Mengirim ke server Google...';
+                    }
+                }, 200);
+
+                const fileArray = [];
+                for(let i = 0; i < files.length; i++) {
+                    const base64Data = await new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onload = (ev) => resolve(ev.target.result.split(',')[1]);
+                        reader.onerror = (err) => reject(err);
+                        reader.readAsDataURL(files[i]);
+                    });
+                    fileArray.push({ filename: files[i].name, mimeType: files[i].type, fileData: base64Data });
+                }
+
                 const payload = {
-                    action: "create",
-                    nama_kegiatan: document.getElementById('nama_kegiatan').value,
-                    nama_unit: document.getElementById('nama_unit').value,
-                    tanggal: document.getElementById('tanggal').value,
-                    mime_type: fileInput.type,
-                    file_base64: base64String
+                    formType: 'dokumentasi',
+                    nama: document.getElementById('namaLengkap').value,
+                    desa: document.getElementById('desaKkn').value,
+                    jenis: document.getElementById('jenisKkn').value,
+                    kegiatan: document.getElementById('namaKegiatan').value,
+                    deskripsi: quill.root.innerHTML,
+                    files: fileArray
                 };
 
-                fetch(scriptURL, {
+                const response = await fetch(scriptURL, {
                     method: 'POST',
+                    mode: 'cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify(payload)
-                })
-                .then(response => response.json())
-                .then(res => {
-                    if(res.status === 'success') {
-                        var modalEl = document.getElementById('modalDokumentasi');
-                        var modal = bootstrap.Modal.getInstance(modalEl);
-                        modal.hide();
-                        
-                        document.getElementById('formDok').reset();
-                        document.getElementById('nama_unit').value = "Divisi IT"; 
-                        
-                        loadData(); // Muat ulang tabel
-                    } else {
-                        alert('Gagal: ' + res.message);
-                    }
-                })
-                .finally(() => {
-                    btnSimpan.disabled = false;
-                    btnText.innerHTML = '<i class="fas fa-save me-1"></i> Simpan Data';
                 });
-            };
-            reader.readAsDataURL(fileInput);
+
+                clearInterval(progressInterval);
+
+                if (!response.ok) throw new Error('Respon server tidak sukses.');
+                const result = await response.json();
+                
+                if(result.status === 'success') {
+                    progressBar.style.width = '100%';
+                    progressBar.textContent = '100%';
+                    progressText.innerHTML = '<i class="fas fa-check-circle text-success me-1"></i> Selesai diunggah!';
+                    showToast('Mantap! Dokumentasi foto berhasil diunggah.', 'success');
+                    
+                    document.getElementById('uploadForm').reset();
+                    quill.setContents([]);
+                    document.getElementById('fileInfoText').innerHTML = "Klik / Seret Foto";
+                } else {
+                    showToast('Gagal memproses file: ' + result.message, 'danger');
+                    progressText.textContent = 'Gagal memproses pengunggahan.';
+                }
+            } catch (error) {
+                clearInterval(progressInterval);
+                showToast('Gagal mengunggah foto. Pastikan koneksi stabil.', 'danger');
+                progressText.textContent = 'Terjadi kesalahan jaringan.';
+                console.error(error);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i> Unggah Dokumentasi';
+                setTimeout(() => { progressContainer.style.display = 'none'; progressBar.style.width = '0%'; }, 3500); 
+            }
+        });
+
+
+        // ==========================================
+        // SUBMIT FORM 2: DOKUMEN LAPORAN RESMI (MODAL & PROGRESS)
+        // ==========================================
+        let laporanModalInstance;
+
+        document.getElementById('laporanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const lapFile = document.getElementById('laporan_kegiatan').files[0];
+            if (!lapFile) { showToast('Dokumen Laporan Kegiatan wajib diupload!', 'warning'); return; }
+
+            laporanModalInstance = new bootstrap.Modal(document.getElementById('modalConfirmLaporan'));
+            laporanModalInstance.show();
+        });
+
+        document.getElementById('btnProsesLaporan').addEventListener('click', async function() {
+            laporanModalInstance.hide(); 
+
+            const lapFile = document.getElementById('laporan_kegiatan').files[0];
+            const jurFile = document.getElementById('jurnal_kkn').files[0];
+            const keuFile = document.getElementById('laporan_keuangan').files[0];
+
+            const submitBtnLap = document.getElementById('btnSubmitLaporan');
+            const progressContainer = document.getElementById('progressContainerLaporan');
+            const progressBar = document.getElementById('uploadProgressBarLaporan');
+            const progressText = document.getElementById('progressTextLaporan');
+
+            submitBtnLap.disabled = true;
+            submitBtnLap.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Mengirim...';
+            
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+            progressText.textContent = 'Menyiapkan file laporan...';
+            
+            updateTanggalUpload();
+
+            let currentProgress = 0;
+            let progressInterval;
+
+            try {
+                progressInterval = setInterval(() => {
+                    if (currentProgress < 90) {
+                        currentProgress += Math.floor(Math.random() * 4) + 1; 
+                        if (currentProgress > 90) currentProgress = 90;
+                        progressBar.style.width = currentProgress + '%';
+                        progressBar.textContent = currentProgress + '%';
+                        if (currentProgress >= 30) progressText.textContent = 'Mengenkripsi dokumen PDF/Excel...';
+                        if (currentProgress >= 65) progressText.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Menyimpan ke Google Drive...';
+                    }
+                }, 250);
+
+                const getBase64 = (file) => new Promise((resolve, reject) => {
+                    if (!file) return resolve(null);
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve({
+                        filename: file.name,
+                        mimeType: file.type,
+                        fileData: reader.result.split(',')[1]
+                    });
+                    reader.onerror = error => reject(error);
+                });
+
+                const payloadLaporan = {
+                    formType: 'laporan',
+                    tanggal_upload: document.getElementById('tanggal_upload').value,
+                    nama_pengirim: document.getElementById('nama_pengirim').value,
+                    dosen_pendamping: document.getElementById('dosen_pendamping').value,
+                    jenis_kkn: document.getElementById('formLaporanJenisKkn').value,
+                    lokasi_kkn: document.getElementById('lokasi_kkn').value,
+                    laporan_kegiatan: await getBase64(lapFile),
+                    jurnal_kkn: await getBase64(jurFile),
+                    laporan_keuangan: await getBase64(keuFile)
+                };
+
+                const responseLap = await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payloadLaporan)
+                });
+
+                clearInterval(progressInterval);
+
+                const resultLap = await responseLap.json();
+                
+                if (resultLap.status === 'success') {
+                    progressBar.style.width = '100%';
+                    progressBar.textContent = '100%';
+                    progressText.innerHTML = '<i class="fas fa-check-circle text-success me-1"></i> Dokumen berhasil terkirim!';
+                    showToast('Sukses! Semua dokumen laporan telah dikirim.', 'success');
+                    
+                    document.getElementById('laporanForm').reset();
+                    updateTanggalUpload(); 
+                } else {
+                    showToast('Gagal mengirim laporan: ' + resultLap.message, 'danger');
+                    progressText.textContent = 'Gagal memproses pengiriman.';
+                }
+
+            } catch (error) {
+                clearInterval(progressInterval);
+                showToast('Terjadi kesalahan jaringan atau ukuran file terlalu besar.', 'danger');
+                progressText.textContent = 'Gagal terhubung ke server.';
+                console.error(error);
+            } finally {
+                submitBtnLap.disabled = false;
+                submitBtnLap.innerHTML = '<i class="fas fa-upload me-2"></i> Kirim Laporan';
+                setTimeout(() => { progressContainer.style.display = 'none'; progressBar.style.width = '0%'; }, 3500);
+            }
+        });
+
+
+        // ---------------- TABEL 1: FOTO ----------------
+        function loadDataKkn() {
+            document.getElementById('tabelBody').innerHTML = `<tr><td colspan="8" class="text-center py-5 text-muted"><div class="spinner-border text-primary me-2"></div> Menarik data dari server...</td></tr>`;
+            if ($.fn.DataTable.isDataTable('#tabelKkn')) { $('#tabelKkn').DataTable().destroy(); }
+            
+            fetch(scriptURL + "?type=foto", { redirect: 'follow' })
+                .then(res => res.json())
+                .then(jsonData => {
+                    const tbody = document.getElementById('tabelBody');
+                    tbody.innerHTML = ''; kknDataList = [];
+                    if(jsonData.length === 0 || jsonData.error) {
+                         tbody.innerHTML = '<tr><td colspan="8" class="text-center py-5">Belum ada data dokumentasi.</td></tr>'; return;
+                    }
+                    jsonData.forEach((row, index) => {
+                        kknDataList.push(row);
+                        const badgeClass = row.jenis === 'KKN GENTASKIN' ? 'badge-gentaskin' : row.jenis === 'KKN Regular Tematik' ? 'badge-tematik' : 'badge-regular';
+                        let textDesc = document.createElement("div"); textDesc.innerHTML = row.deskripsi;
+                        textDesc = textDesc.textContent || textDesc.innerText || "";
+                        if(textDesc.length > 25) textDesc = textDesc.substring(0, 25) + '...';
+                        tbody.innerHTML += `
+                            <tr>
+                                <td class="text-center fw-medium">${index + 1}</td>
+                                <td><span class="badge bg-light text-dark border p-2">${row.tanggal}</span></td>
+                                <td class="fw-semibold">${row.nama}</td>
+                                <td>${row.desa}</td>
+                                <td><span class="custom-badge ${badgeClass}">${row.jenis}</span></td>
+                                <td>${row.kegiatan}</td>
+                                <td class="text-muted small">${textDesc}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-info text-white rounded-pill px-3 shadow-sm" onclick="showDetailModal(${index})"><i class="fas fa-images"></i></button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                    dataTable = $('#tabelKkn').DataTable({ "language": { "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/id.json" }, "ordering": false, "pageLength": 5 });
+                }).catch(() => {
+                    document.getElementById('tabelBody').innerHTML = '<tr><td colspan="8" class="text-center text-danger py-5"><i class="fas fa-exclamation-circle me-1"></i> Data foto gagal dimuat.</td></tr>';
+                });
+        }
+
+
+        // ==========================================
+        // SISTEM PASSWORD & LOAD DATA LAPORAN (BARU)
+        // ==========================================
+        let passwordModalInstance;
+        let targetSecureUrl = '';
+        let targetSecureType = '';
+
+        // Fungsi Membuka Modal Password sebelum File dibuka
+        window.openSecureFile = function(url, type) {
+            targetSecureUrl = url;
+            targetSecureType = type;
+            
+            // Reset input modal
+            document.getElementById('inputPasswordAkses').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+            
+            if(!passwordModalInstance) {
+                passwordModalInstance = new bootstrap.Modal(document.getElementById('modalPasswordFile'));
+            }
+            passwordModalInstance.show();
+        };
+
+        // Event Listener untuk Tombol Submit Password
+        document.getElementById('btnSubmitPassword').addEventListener('click', processPassword);
+
+        // Fitur klik tombol "Enter" di keyboard
+        document.getElementById('inputPasswordAkses').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') { processPassword(); }
+        });
+
+        // Proses validasi password
+        function processPassword() {
+            const inputPw = document.getElementById('inputPasswordAkses').value;
+            const errorMsg = document.getElementById('passwordError');
+            
+            // Aturan Password
+            let validPassword = (targetSecureType === 'keuangan') ? 'LapKeuanganKKN' : 'LaporanKKN';
+            
+            if (inputPw === validPassword) {
+                errorMsg.style.display = 'none';
+                passwordModalInstance.hide();
+                window.open(targetSecureUrl, '_blank');
+                showToast('Akses diberikan. Dokumen berhasil dibuka.', 'success');
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        // ---------------- TABEL 2: LAPORAN ----------------
+        function loadDataLaporan() {
+            document.getElementById('tabelBodyLaporan').innerHTML = `<tr><td colspan="9" class="text-center py-5 text-muted"><div class="spinner-border text-danger me-2"></div> Menarik data laporan...</td></tr>`;
+            if ($.fn.DataTable.isDataTable('#tabelDataLaporan')) { $('#tabelDataLaporan').DataTable().destroy(); }
+            
+            fetch(scriptURL + "?type=laporan", { redirect: 'follow' })
+                .then(res => res.json())
+                .then(jsonData => {
+                    const tbody = document.getElementById('tabelBodyLaporan');
+                    tbody.innerHTML = '';
+                    if(jsonData.length === 0 || jsonData.error) {
+                         tbody.innerHTML = '<tr><td colspan="9" class="text-center py-5">Belum ada data laporan resmi.</td></tr>'; return;
+                    }
+                    jsonData.forEach((row, index) => {
+                        const badgeClass = row.jenis === 'KKN GENTASKIN' ? 'badge-gentaskin' : row.jenis === 'KKN Regular Tematik' ? 'badge-tematik' : 'badge-regular';
+                        
+                        // Perubahan struktur tombol ke fungsi openSecureFile
+                        const btnLap = row.urlLaporan ? `<button onclick="openSecureFile('${row.urlLaporan}', 'laporan')" class="btn btn-sm btn-danger rounded-circle shadow-sm" title="Buka PDF"><i class="fas fa-file-pdf"></i></button>` : '-';
+                        const btnJur = row.urlJurnal ? `<button onclick="openSecureFile('${row.urlJurnal}', 'laporan')" class="btn btn-sm btn-danger rounded-circle shadow-sm" title="Buka PDF"><i class="fas fa-file-pdf"></i></button>` : '-';
+                        const btnKeu = row.urlKeuangan ? `<button onclick="openSecureFile('${row.urlKeuangan}', 'keuangan')" class="btn btn-sm btn-success rounded-circle shadow-sm" title="Buka Keuangan"><i class="fas fa-lock"></i></button>` : '-';
+                        
+                        tbody.innerHTML += `
+                            <tr>
+                                <td class="text-center fw-medium">${index + 1}</td>
+                                <td class="small text-muted">${row.tanggal_upload}</td>
+                                <td class="fw-semibold">${row.nama_pengirim}</td>
+                                <td>${row.dosen_pendamping}</td>
+                                <td><span class="custom-badge ${badgeClass}">${row.jenis_kkn}</span></td>
+                                <td>${row.lokasi_kkn}</td>
+                                <td class="text-center">${btnLap}</td>
+                                <td class="text-center">${btnJur}</td>
+                                <td class="text-center">${btnKeu}</td>
+                            </tr>
+                        `;
+                    });
+                    dataTableLaporan = $('#tabelDataLaporan').DataTable({ "language": { "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/id.json" }, "ordering": false, "pageLength": 5 });
+                }).catch(() => {
+                    document.getElementById('tabelBodyLaporan').innerHTML = '<tr><td colspan="9" class="text-center text-danger py-5"><i class="fas fa-exclamation-circle me-1"></i> Data laporan gagal dimuat.</td></tr>';
+                });
+        }     
+        function showDetailModal(index) {
+            const row = kknDataList[index];
+            document.getElementById('modalNama').textContent = row.nama;
+            document.getElementById('modalKegiatan').textContent = row.kegiatan;
+            document.getElementById('modalTglDesa').textContent = row.tanggal + " - " + row.desa;
+            document.getElementById('modalDeskripsi').innerHTML = row.deskripsi;
+            const badgeClass = row.jenis === 'KKN GENTASKIN' ? 'badge-gentaskin' : row.jenis === 'KKN Regular Tematik' ? 'badge-tematik' : 'badge-regular';
+            document.getElementById('modalJenis').className = 'custom-badge ' + badgeClass;
+            document.getElementById('modalJenis').textContent = row.jenis;
+            
+            const fotoUrls = (row.foto || '').split(',');
+            let carouselHtml = '';
+            if (fotoUrls.length === 1 && fotoUrls[0].trim() === "") {
+                carouselHtml = '<div class="p-5 bg-light rounded text-muted"><i class="fas fa-image fa-3x mb-2 opacity-50"></i><br>Tidak ada foto</div>';
+            } else {
+                carouselHtml = `<div id="fotoCarousel" class="carousel slide rounded-3 overflow-hidden shadow-sm border" data-bs-ride="carousel"><div class="carousel-inner bg-light" style="min-height:300px;">`;
+                fotoUrls.forEach((url, idx) => {
+                    const cleanUrl = url.trim(); if(!cleanUrl) return;
+                    let fileId = "";
+                    if (cleanUrl.includes('id=')) fileId = cleanUrl.split('id=')[1];
+                    else if (cleanUrl.includes('/d/')) fileId = cleanUrl.split('/d/')[1].split('/')[0];
+                    const renderUrl = fileId ? `https://lh3.googleusercontent.com/d/${fileId}` : '';
+                    carouselHtml += `
+                    <div class="carousel-item ${idx === 0 ? 'active' : ''}">
+                        <img src="${renderUrl}" class="d-block w-100" style="height: 400px; object-fit: contain; background: #e2e8f0;" alt="Foto ${idx+1}">
+                        <div class="p-3 text-center bg-white border-top">
+                            <a href="${renderUrl}" target="_blank" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-download me-1"></i> Unduh</a>
+                        </div>
+                    </div>`;
+                });
+                carouselHtml += `</div>`;
+                if (fotoUrls.length > 1) {
+                    carouselHtml += `
+                      <button class="carousel-control-prev" type="button" data-bs-target="#fotoCarousel" data-bs-slide="prev" style="width:10%;">
+                        <span class="carousel-control-prev-icon p-3 bg-dark rounded-circle" aria-hidden="true"></span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#fotoCarousel" data-bs-slide="next" style="width:10%;">
+                        <span class="carousel-control-next-icon p-3 bg-dark rounded-circle" aria-hidden="true"></span>
+                      </button>`;
+                }
+                carouselHtml += `</div>`;
+            }
+            document.getElementById('modalFotoContainer').innerHTML = carouselHtml;
+            new bootstrap.Modal(document.getElementById('detailModal')).show();
+        }
+
+        // Fitur PWA (Service Worker) jika ada
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(err => console.log('SW Gagal:', err)));
         }
     </script>
+
+
+
+
+
+
+
 </body>
 </html>
